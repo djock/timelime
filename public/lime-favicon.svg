@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <radialGradient id="limeGradient" cx="40%" cy="40%">
+      <stop offset="0%" style="stop-color:#9acd32;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#32cd32;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#228b22;stop-opacity:1" />
+    </radialGradient>
+    <radialGradient id="highlightGradient" cx="30%" cy="30%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.6" />
+      <stop offset="50%" style="stop-color:#ffffff;stop-opacity:0.2" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Lime body -->
+  <circle cx="50" cy="50" r="35" fill="url(#limeGradient)"/>
+
+  <!-- Highlight -->
+  <ellipse cx="38" cy="38" rx="15" ry="18" fill="url(#highlightGradient)"/>
+
+  <!-- Lime segments -->
+  <g opacity="0.3">
+    <line x1="50" y1="15" x2="50" y2="85" stroke="#228b22" stroke-width="1"/>
+    <line x1="35" y1="20" x2="65" y2="80" stroke="#228b22" stroke-width="1"/>
+    <line x1="24" y1="32" x2="76" y2="68" stroke="#228b22" stroke-width="1"/>
+    <line x1="18" y1="47" x2="82" y2="53" stroke="#228b22" stroke-width="1"/>
+    <line x1="24" y1="68" x2="76" y2="32" stroke="#228b22" stroke-width="1"/>
+    <line x1="35" y1="80" x2="65" y2="20" stroke="#228b22" stroke-width="1"/>
+  </g>
+
+  <!-- Stem -->
+  <path d="M 50 15 Q 52 8 48 5 Q 46 3 44 5 Q 42 7 44 10 L 48 14"
+        fill="#2d5016" stroke="#1a3010" stroke-width="0.5"/>
+
+  <!-- Leaf -->
+  <path d="M 48 8 Q 42 6 38 8 Q 34 10 36 14 Q 38 16 42 15 Q 45 14 48 10 Z"
+        fill="#4a7023" stroke="#2d5016" stroke-width="0.5"/>
+</svg>
