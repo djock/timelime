@@ -26,10 +26,16 @@
     };
   }
 
-  $: visibleEvents = events.filter(event => {
-    const pos = getEventPosition(event);
-    return pos.visible;
-  });
+  // Explicitly depend on both events and selectedYear for reactivity
+  $: {
+    const yearStart = new Date(selectedYear, 0, 1);
+    const yearEnd = new Date(selectedYear, 11, 31);
+    visibleEvents = events.filter(event => {
+      const eventStart = new Date(event.startDate);
+      const eventEnd = new Date(event.endDate);
+      return eventEnd >= yearStart && eventStart <= yearEnd;
+    });
+  }
 </script>
 
 <div class="gantt-container">
