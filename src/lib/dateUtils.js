@@ -46,7 +46,7 @@ export function getMonthNumber(date) {
   return date.getMonth() + 1;
 }
 
-export function getCheckInKey(date, type) {
+export function getCheckInKey(date, type, customDays = null) {
   const d = new Date(date);
   const year = d.getFullYear();
 
@@ -59,16 +59,18 @@ export function getCheckInKey(date, type) {
       return `${year}-${String(d.getMonth() + 1).padStart(2, '0')}`;
     case 'yearly':
       return String(year);
+    case 'custom':
+      return formatDate(d);
     default:
       return formatDate(d);
   }
 }
 
-export function getCurrentCheckInKey(type) {
-  return getCheckInKey(new Date(), type);
+export function getCurrentCheckInKey(type, customDays = null) {
+  return getCheckInKey(new Date(), type, customDays);
 }
 
-export function generateCheckInPeriods(startDate, endDate, type) {
+export function generateCheckInPeriods(startDate, endDate, type, customDays = null) {
   const start = new Date(startDate);
   const end = new Date(endDate);
   const periods = [];
@@ -112,6 +114,18 @@ export function generateCheckInPeriods(startDate, endDate, type) {
         date: new Date(year, 0, 1)
       });
     }
+  } else if (type === 'custom' && customDays && customDays.length > 0) {
+    const current = new Date(start);
+    while (current <= end) {
+      const dayOfWeek = current.getDay();
+      if (customDays.includes(dayOfWeek)) {
+        periods.push({
+          key: formatDate(current),
+          date: new Date(current)
+        });
+      }
+      current.setDate(current.getDate() + 1);
+    }
   }
 
   return periods;
@@ -137,11 +151,11 @@ export function getGridDimensions(type, startDate) {
   }
 }
 
-export function isPastPeriod(periodKey, type) {
+export function isPastPeriod(periodKey, type, customDays = null) {
   const now = new Date();
-  const currentKey = getCurrentCheckInKey(type);
+  const currentKey = getCurrentCheckInKey(type, customDays);
 
-  if (type === 'daily') {
+  if (type === 'daily' || type === 'custom') {
     return new Date(periodKey) < new Date(formatDate(now));
   } else if (type === 'weekly') {
     return periodKey < currentKey;
@@ -153,6 +167,6 @@ export function isPastPeriod(periodKey, type) {
   return false;
 }
 
-export function isCurrentPeriod(periodKey, type) {
-  return periodKey === getCurrentCheckInKey(type);
+export function isCurrentPeriod(periodKey, type, customDays = null) {
+  return periodKey === getCurrentCheckInKey(type, customDays);
 }

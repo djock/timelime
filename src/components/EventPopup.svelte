@@ -8,8 +8,8 @@
   export let onEdit;
   export let onDelete;
 
-  $: periods = generateCheckInPeriods(event.startDate, event.endDate, event.checkInType);
-  $: currentKey = getCurrentCheckInKey(event.checkInType);
+  $: periods = generateCheckInPeriods(event.startDate, event.endDate, event.checkInType, event.customDays);
+  $: currentKey = getCurrentCheckInKey(event.checkInType, event.customDays);
   $: hasCheckedInToday = checkIns[event.id]?.[currentKey] === true;
 
   let canCheckIn = false;
@@ -21,7 +21,14 @@
     const startDate = new Date(event.startDate);
     const endDate = new Date(event.endDate);
     const isWithinRange = today >= startDate && today <= endDate;
-    canCheckIn = isWithinRange && isCurrentPeriod(currentKey, event.checkInType) && !hasCheckedInToday;
+
+    // For custom check-ins, also check if today is a selected day
+    let isValidDay = true;
+    if (event.checkInType === 'custom' && event.customDays) {
+      isValidDay = event.customDays.includes(today.getDay());
+    }
+
+    canCheckIn = isWithinRange && isValidDay && isCurrentPeriod(currentKey, event.checkInType, event.customDays) && !hasCheckedInToday;
   }
 
   $: {
@@ -44,8 +51,8 @@
 
   function getCellClass(period) {
     const isChecked = checkIns[event.id]?.[period.key] === true;
-    const isCurrent = isCurrentPeriod(period.key, event.checkInType);
-    const isPast = isPastPeriod(period.key, event.checkInType);
+    const isCurrent = isCurrentPeriod(period.key, event.checkInType, event.customDays);
+    const isPast = isPastPeriod(period.key, event.checkInType, event.customDays);
 
     if (isChecked) return 'checked';
     if (isPast && !isChecked) return 'missed';
@@ -59,12 +66,15 @@
 
   $: checkedCount = periods.filter(p => checkIns[event.id]?.[p.key] === true).length;
   $: missedCount = periods.filter(p => {
-    const isPast = isPastPeriod(p.key, event.checkInType);
+    const isPast = isPastPeriod(p.key, event.checkInType, event.customDays);
     const isChecked = checkIns[event.id]?.[p.key] === true;
     return isPast && !isChecked;
   }).length;
   $: {
-    const eligiblePeriods = periods.filter(p => isPastPeriod(p.key, event.checkInType) || isCurrentPeriod(p.key, event.checkInType)).length;
+    const eligiblePeriods = periods.filter(p =>
+      isPastPeriod(p.key, event.checkInType, event.customDays) ||
+      isCurrentPeriod(p.key, event.checkInType, event.customDays)
+    ).length;
     completionRate = eligiblePeriods > 0 ? Math.round((checkedCount / eligiblePeriods) * 100) : 0;
   }
 </script>
@@ -97,14 +107,14 @@
         </div>
         <div class="stat">
           <div class="stat-value">{periods.length}</div>
-          <div class="stat-label">Total {event.checkInType === 'daily' ? 'Days' : event.checkInType === 'weekly' ? 'Weeks' : event.checkInType === 'monthly' ? 'Months' : 'Years'}</div>
+          <div class="stat-label">Total {event.checkInType === 'daily' ? 'Days' : event.checkInType === 'weekly' ? 'Weeks' : event.checkInType === 'monthly' ? 'Months' : event.checkInType === 'yearly' ? 'Years' : 'Check-ins'}</div>
         </div>
       </div>
 
       {#if canCheckIn}
         <div class="check-in-section">
           <button class="check-in-button" on:click={handleCheckIn}>
-            ✓ Check In for {event.checkInType === 'daily' ? 'Today' : event.checkInType === 'weekly' ? 'This Week' : event.checkInType === 'monthly' ? 'This Month' : 'This Year'}
+            ✓ Check In for {event.checkInType === 'daily' ? 'Today' : event.checkInType === 'weekly' ? 'This Week' : event.checkInType === 'monthly' ? 'This Month' : event.checkInType === 'yearly' ? 'This Year' : 'Today'}
           </button>
         </div>
       {/if}
@@ -118,7 +128,7 @@
           {#each periods as period}
             <div
               class="contribution-cell {getCellClass(period)}"
-              title="{period.key}: {checkIns[event.id]?.[period.key] ? 'Checked in' : isPastPeriod(period.key, event.checkInType) ? 'Missed' : 'Upcoming'}"
+              title="{period.key}: {checkIns[event.id]?.[period.key] ? 'Checked in' : isPastPeriod(period.key, event.checkInType, event.customDays) ? 'Missed' : 'Upcoming'}"
             ></div>
           {/each}
         </div>
