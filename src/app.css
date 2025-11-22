@@ -67,11 +67,11 @@ button:disabled {
 }
 
 button.secondary {
-  background-color: var(--bg-tertiary);
+  background-color: var(--accent-secondary);
 }
 
 button.secondary:hover {
-  background-color: var(--border-color);
+  background-color: #c05f05;
 }
 
 button.danger {
