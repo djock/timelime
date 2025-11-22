@@ -4,6 +4,7 @@
   export let onEventClick;
 
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  let visibleEvents = [];
 
   function getEventPosition(event) {
     const yearStart = new Date(selectedYear, 0, 1);
