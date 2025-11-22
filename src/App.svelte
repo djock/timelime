@@ -156,7 +156,7 @@
           class:active={currentView === 'gantt'}
           on:click={() => currentView = 'gantt'}
         >
-          Gantt
+          Yearly
         </button>
         <button
           class:active={currentView === 'monthly'}
@@ -305,7 +305,7 @@
   }
 
   .view-buttons button.active {
-    background-color: var(--lime-dark);
+    background-color: var(--accent-secondary);
   }
 
   .time-navigation {

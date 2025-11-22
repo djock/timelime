@@ -160,7 +160,7 @@ label {
 
 .contribution-grid {
   display: grid;
-  gap: 3px;
+  gap: 2px;
   padding: 1rem 0;
 }
 
@@ -169,19 +169,16 @@ label {
   border-radius: 2px;
   background-color: var(--bg-tertiary);
   transition: all 0.2s;
-  min-width: 12px;
-  min-height: 12px;
-  border: 1px solid var(--border-color);
+  min-width: 8px;
+  min-height: 8px;
 }
 
 .contribution-cell.checked {
   background-color: var(--success);
-  border-color: var(--success);
 }
 
 .contribution-cell.missed {
   background-color: var(--danger);
-  border-color: var(--danger);
 }
 
 .contribution-cell.future {

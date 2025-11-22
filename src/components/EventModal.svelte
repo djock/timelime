@@ -1,4 +1,6 @@
 <script>
+  import DateRangePicker from './DateRangePicker.svelte';
+
   export let event = null;
   export let onSave;
   export let onClose;
@@ -20,13 +22,9 @@
     { value: 6, label: 'Saturday' }
   ];
 
-  function handleStartDateChange() {
-    if (startDate && !endDate) {
-      // Auto-focus end date input after a short delay
-      setTimeout(() => {
-        document.getElementById('endDate')?.focus();
-      }, 100);
-    }
+  function handleDateRangeChange(start, end) {
+    startDate = start;
+    endDate = end;
   }
 
   function toggleDay(day) {
@@ -89,24 +87,11 @@
         </div>
 
         <div class="form-group">
-          <label for="startDate">Start Date *</label>
-          <input
-            id="startDate"
-            type="date"
-            bind:value={startDate}
-            on:change={handleStartDateChange}
-            required
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="endDate">End Date *</label>
-          <input
-            id="endDate"
-            type="date"
-            bind:value={endDate}
-            min={startDate}
-            required
+          <label>Date Range *</label>
+          <DateRangePicker
+            {startDate}
+            {endDate}
+            onChange={handleDateRangeChange}
           />
         </div>
 
@@ -152,7 +137,6 @@
               type="color"
               bind:value={color}
             />
-            <span class="color-text">{color}</span>
           </div>
         </div>
       </form>
