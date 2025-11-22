@@ -11,7 +11,18 @@
   $: periods = generateCheckInPeriods(event.startDate, event.endDate, event.checkInType);
   $: currentKey = getCurrentCheckInKey(event.checkInType);
   $: hasCheckedInToday = checkIns[event.id]?.[currentKey] === true;
-  $: canCheckIn = isCurrentPeriod(currentKey, event.checkInType) && !hasCheckedInToday;
+
+  let canCheckIn = false;
+  let completionRate = 0;
+
+  // Check if current date is within event date range
+  $: {
+    const today = new Date();
+    const startDate = new Date(event.startDate);
+    const endDate = new Date(event.endDate);
+    const isWithinRange = today >= startDate && today <= endDate;
+    canCheckIn = isWithinRange && isCurrentPeriod(currentKey, event.checkInType) && !hasCheckedInToday;
+  }
 
   $: {
     // Calculate grid layout
@@ -52,7 +63,10 @@
     const isChecked = checkIns[event.id]?.[p.key] === true;
     return isPast && !isChecked;
   }).length;
-  $: completionRate = periods.length > 0 ? Math.round((checkedCount / periods.filter(p => isPastPeriod(p.key, event.checkInType) || isCurrentPeriod(p.key, event.checkInType)).length) * 100) : 0;
+  $: {
+    const eligiblePeriods = periods.filter(p => isPastPeriod(p.key, event.checkInType) || isCurrentPeriod(p.key, event.checkInType)).length;
+    completionRate = eligiblePeriods > 0 ? Math.round((checkedCount / eligiblePeriods) * 100) : 0;
+  }
 </script>
 
 <div class="modal-overlay" on:click={onClose}>

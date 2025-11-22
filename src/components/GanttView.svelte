@@ -60,7 +60,6 @@
       {#each visibleEvents as event}
         {@const position = getEventPosition(event)}
         <div class="gantt-row">
-          <div class="event-label">{event.title}</div>
           <div class="event-timeline">
             <button
               class="event-bar"
@@ -114,11 +113,7 @@
   }
 
   .gantt-row {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 1rem;
     margin-bottom: 0.75rem;
-    align-items: center;
   }
 
   .event-label {
