@@ -51,17 +51,6 @@ npm run build
 npm run preview
 ```
 
-## 📦 Deployment
-
-The app is automatically deployed to GitHub Pages when changes are pushed to the main branch via GitHub Actions.
-
-### Setup Instructions
-
-1. Go to your repository settings on GitHub
-2. Navigate to **Settings > Pages**
-3. Under **Source**, select **GitHub Actions**
-4. The workflow will automatically deploy on push to main
-
 ## 🛠️ Tech Stack
 
 - **Framework**: Svelte 4
