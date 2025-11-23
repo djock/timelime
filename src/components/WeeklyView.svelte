@@ -29,9 +29,7 @@
   function getEventsForDay(date) {
     const dateStr = date.toISOString().split('T')[0];
     return events.filter(event => {
-      const start = new Date(event.startDate);
-      const end = new Date(event.endDate);
-      return date >= start && date <= end;
+      return dateStr >= event.startDate && dateStr <= event.endDate;
     });
   }
 
