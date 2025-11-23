@@ -120,6 +120,7 @@
   .week-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
+    grid-auto-rows: minmax(150px, auto);
     gap: 0.875rem;
     width: 100%;
   }
@@ -128,11 +129,12 @@
     background: var(--comic-white);
     border: var(--border-medium) solid var(--comic-black);
     border-radius: 0;
-    min-height: 320px;
+    min-height: 150px;
     display: flex;
     flex-direction: column;
     box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.4);
     transition: all 0.2s ease;
+    height: 100%;
   }
 
   .week-day:hover {
@@ -219,6 +221,7 @@
   @media (max-width: 1200px) {
     .week-grid {
       grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: minmax(150px, auto);
     }
   }
 
@@ -229,10 +232,11 @@
 
     .week-grid {
       grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: minmax(120px, auto);
     }
 
     .week-day {
-      min-height: 220px;
+      min-height: 120px;
     }
 
     .week-header h2 {

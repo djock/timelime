@@ -143,7 +143,7 @@
   }
 
   .calendar-day {
-    min-height: 110px;
+    aspect-ratio: 1 / 1;
     background: var(--comic-white);
     border: var(--border-thin) solid var(--comic-black);
     border-radius: 0;
@@ -151,6 +151,9 @@
     position: relative;
     box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
     transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
   }
 
   .calendar-day:hover {
@@ -185,6 +188,9 @@
     display: flex;
     flex-direction: column;
     gap: 0.375rem;
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
   }
 
   .event-indicator {
@@ -221,7 +227,6 @@
     }
 
     .calendar-day {
-      min-height: 85px;
       padding: 0.5rem;
     }
 
