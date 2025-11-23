@@ -11,6 +11,7 @@
   $: periods = generateCheckInPeriods(event.startDate, event.endDate, event.checkInType, event.customDays);
   $: currentKey = getCurrentCheckInKey(event.checkInType, event.customDays);
   $: hasCheckedInToday = checkIns[event.id]?.[currentKey] === true;
+  $: eventCheckIns = checkIns[event.id] || {};
 
   let canCheckIn = false;
   let completionRate = 0;
@@ -49,8 +50,8 @@
 
   let gridCols = 7;
 
-  function getCellClass(period) {
-    const isChecked = checkIns[event.id]?.[period.key] === true;
+  function getCellClass(period, eventCheckIns) {
+    const isChecked = eventCheckIns[period.key] === true;
     const isCurrent = isCurrentPeriod(period.key, event.checkInType, event.customDays);
     const isPast = isPastPeriod(period.key, event.checkInType, event.customDays);
 
@@ -64,10 +65,10 @@
     onCheckIn(event.id, currentKey);
   }
 
-  $: checkedCount = periods.filter(p => checkIns[event.id]?.[p.key] === true).length;
+  $: checkedCount = periods.filter(p => eventCheckIns[p.key] === true).length;
   $: missedCount = periods.filter(p => {
     const isPast = isPastPeriod(p.key, event.checkInType, event.customDays);
-    const isChecked = checkIns[event.id]?.[p.key] === true;
+    const isChecked = eventCheckIns[p.key] === true;
     return isPast && !isChecked;
   }).length;
   $: {
@@ -127,8 +128,8 @@
         >
           {#each periods as period}
             <div
-              class="contribution-cell {getCellClass(period)}"
-              title="{period.key}: {checkIns[event.id]?.[period.key] ? 'Checked in' : isPastPeriod(period.key, event.checkInType, event.customDays) ? 'Missed' : 'Upcoming'}"
+              class="contribution-cell {getCellClass(period, eventCheckIns)}"
+              title="{period.key}: {eventCheckIns[period.key] ? 'Checked in' : isPastPeriod(period.key, event.checkInType, event.customDays) ? 'Missed' : 'Upcoming'}"
             ></div>
           {/each}
         </div>
@@ -278,5 +279,21 @@
   .legend-item .contribution-cell {
     width: 18px;
     height: 18px;
+  }
+
+  @media (max-width: 768px) {
+    .stats {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      padding: 1rem;
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.65rem;
+    }
   }
 </style>
