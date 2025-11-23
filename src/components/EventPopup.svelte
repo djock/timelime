@@ -202,7 +202,7 @@
     font-size: 2rem;
     font-weight: 400;
     font-family: 'Bangers', cursive;
-    color: var(--comic-red);
+    color: var(--comic-black);
     margin-top: 0.5rem;
     text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
   }
