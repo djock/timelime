@@ -128,7 +128,10 @@
     <div class="header-content">
       <div class="logo">
         <img src="/timelime/lime-favicon.svg" alt="TimeLime" class="logo-img" />
-        <h1>TimeLime</h1>
+        <div>
+          <h1>TimeLime</h1>
+          <p class="app-description">Track your habits and events with daily check-ins</p>
+        </div>
       </div>
       <div class="header-actions">
         <input
@@ -310,6 +313,15 @@
     font-weight: 400;
   }
 
+  .app-description {
+    font-family: 'Comic Neue', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin: 0.5rem 0 0 0;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
   .header-actions {
     display: flex;
     gap: 0.75rem;
@@ -464,6 +476,10 @@
 
     h1 {
       font-size: 1.75rem;
+    }
+
+    .app-description {
+      font-size: 0.85rem;
     }
   }
 </style>
