@@ -154,50 +154,74 @@
 <style>
   .days-selector {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.625rem;
     flex-wrap: wrap;
   }
 
   .day-button {
-    padding: 0.5rem 0.75rem;
-    border: 2px solid var(--border-color);
-    background-color: var(--bg-secondary);
-    color: var(--text-primary);
-    border-radius: 0.375rem;
-    font-size: 0.75rem;
-    font-weight: 600;
+    padding: 0.625rem 1rem;
+    border: 2px solid var(--border-ornate);
+    background: linear-gradient(145deg, var(--parchment-light), var(--parchment-medium));
+    color: var(--text-secondary);
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.3s ease;
+    box-shadow:
+      0 2px 4px var(--shadow-light),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
   }
 
   .day-button:hover {
-    border-color: var(--lime-dark);
-    background-color: var(--bg-tertiary);
+    border-color: var(--gold-accent);
+    background: linear-gradient(145deg, var(--gold-dark), #8B6914);
+    color: var(--text-light);
+    transform: translateY(-2px);
+    box-shadow:
+      0 4px 8px var(--shadow-medium),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
 
   .day-button.selected {
-    background-color: var(--lime-dark);
-    color: white;
-    border-color: var(--lime-dark);
+    background: linear-gradient(145deg, var(--crimson-primary), var(--crimson-dark));
+    color: var(--text-light);
+    border-color: var(--gold-accent);
+    box-shadow:
+      0 0 12px var(--glow-crimson),
+      0 4px 8px var(--shadow-medium),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
 
   .color-picker {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 1rem;
   }
 
   .color-preview {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    border: 2px solid var(--border-color);
+    border: 3px solid var(--border-ornate);
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: all 0.3s ease;
+    box-shadow:
+      0 4px 8px var(--shadow-medium),
+      inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    position: relative;
   }
 
   .color-preview:hover {
-    transform: scale(1.1);
+    transform: scale(1.15) rotate(5deg);
+    border-color: var(--gold-accent);
+    box-shadow:
+      0 6px 16px var(--shadow-medium),
+      0 0 15px var(--glow-gold),
+      inset 0 2px 4px rgba(0, 0, 0, 0.2);
   }
 
   .color-picker input[type="color"] {
@@ -208,9 +232,10 @@
   }
 
   .color-text {
-    font-family: monospace;
-    font-size: 0.875rem;
+    font-family: 'Crimson Pro', monospace;
+    font-size: 0.95rem;
     color: var(--text-secondary);
+    font-weight: 600;
   }
 
   .color-preview {

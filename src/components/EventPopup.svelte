@@ -159,81 +159,136 @@
 
 <style>
   .event-popup {
-    max-width: 700px;
+    max-width: 750px;
   }
 
   .event-dates {
-    font-size: 0.875rem;
+    font-size: 1rem;
     color: var(--text-secondary);
-    margin-top: 0.25rem;
+    margin-top: 0.5rem;
+    font-family: 'Crimson Pro', serif;
+    font-weight: 600;
   }
 
   .stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    padding: 1rem;
-    background-color: var(--bg-tertiary);
-    border-radius: 0.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: linear-gradient(to bottom,
+      rgba(212, 175, 55, 0.15),
+      rgba(232, 220, 196, 0.2)
+    );
+    border-radius: 8px;
+    border: 2px solid var(--border-ornate);
+    box-shadow:
+      0 4px 12px var(--shadow-light),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
   }
 
   .stat {
     text-align: center;
+    position: relative;
+  }
+
+  .stat::after {
+    content: '◆';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--gold-accent);
+    font-size: 0.75rem;
+    opacity: 0.6;
   }
 
   .stat-value {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--lime-dark);
+    font-size: 2rem;
+    font-weight: 900;
+    font-family: 'Cinzel', serif;
+    background: linear-gradient(135deg, var(--crimson-primary), var(--gold-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-top: 0.5rem;
   }
 
   .stat-label {
     font-size: 0.75rem;
     color: var(--text-secondary);
-    margin-top: 0.25rem;
+    margin-top: 0.5rem;
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
   }
 
   .check-in-section {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
   }
 
   .check-in-button {
     width: 100%;
-    padding: 1rem;
-    font-size: 1rem;
-    font-weight: bold;
-    background-color: var(--success);
+    padding: 1.25rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    background: linear-gradient(145deg, var(--emerald-accent), #2E7D32);
+    border: 2px solid var(--gold-dark);
+    box-shadow:
+      0 0 15px rgba(27, 94, 32, 0.4),
+      0 6px 12px var(--shadow-medium),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    animation: glow 2s infinite;
   }
 
   .check-in-button:hover {
-    background-color: #16a34a;
+    background: linear-gradient(145deg, #2E7D32, var(--emerald-accent));
+    border-color: var(--gold-accent);
+    transform: translateY(-3px);
+    box-shadow:
+      0 0 25px rgba(27, 94, 32, 0.6),
+      0 8px 16px var(--shadow-medium),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
   }
 
   .contribution-section h3 {
-    margin-bottom: 1rem;
-    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+    font-family: 'Cinzel', serif;
+    color: var(--text-gold);
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
   }
 
   .contribution-cell.current {
-    border: 2px solid var(--lime-dark);
+    border: 3px solid var(--gold-accent);
+    box-shadow:
+      0 0 15px var(--glow-gold),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    animation: glow 2s infinite;
   }
 
   .legend {
     display: flex;
-    gap: 1.5rem;
-    margin-top: 1rem;
-    font-size: 0.75rem;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    font-family: 'Crimson Pro', serif;
+    font-weight: 600;
   }
 
   .legend-item {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.625rem;
   }
 
   .legend-item .contribution-cell {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
   }
 </style>
