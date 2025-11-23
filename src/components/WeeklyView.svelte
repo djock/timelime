@@ -87,6 +87,8 @@
     background-image:
       radial-gradient(circle, rgba(237, 28, 36, 0.03) 1px, transparent 1px);
     background-size: 12px 12px;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   .week-header {
@@ -119,6 +121,7 @@
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 0.875rem;
+    width: 100%;
   }
 
   .week-day {

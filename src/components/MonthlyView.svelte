@@ -99,6 +99,8 @@
     background-image:
       radial-gradient(circle, rgba(0, 102, 204, 0.03) 1px, transparent 1px);
     background-size: 12px 12px;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   .calendar-header {
@@ -123,6 +125,7 @@
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 0.75rem;
+    width: 100%;
   }
 
   .day-header {

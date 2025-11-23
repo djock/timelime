@@ -144,7 +144,7 @@
         <button class="secondary" on:click={handleExport}>
           Export
         </button>
-        <button on:click={handleAddEvent}>
+        <button class="primary-action" on:click={handleAddEvent}>
           + New Event
         </button>
       </div>
@@ -174,19 +174,19 @@
 
       <div class="time-navigation">
         {#if currentView === 'gantt'}
-          <button on:click={() => changeYear(-1)}>←</button>
+          <button class="nav-arrow" on:click={() => changeYear(-1)}>←</button>
           <span class="time-label">{selectedYear}</span>
-          <button on:click={() => changeYear(1)}>→</button>
+          <button class="nav-arrow" on:click={() => changeYear(1)}>→</button>
         {:else if currentView === 'monthly'}
-          <button on:click={() => changeMonth(-1)}>←</button>
+          <button class="nav-arrow" on:click={() => changeMonth(-1)}>←</button>
           <span class="time-label">
             {new Date(selectedYear, selectedMonth).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
           </span>
-          <button on:click={() => changeMonth(1)}>→</button>
+          <button class="nav-arrow" on:click={() => changeMonth(1)}>→</button>
         {:else if currentView === 'weekly'}
-          <button on:click={() => changeWeek(-1)}>←</button>
+          <button class="nav-arrow" on:click={() => changeWeek(-1)}>←</button>
           <span class="time-label">Week {selectedWeek}, {selectedYear}</span>
-          <button on:click={() => changeWeek(1)}>→</button>
+          <button class="nav-arrow" on:click={() => changeWeek(1)}>→</button>
         {/if}
       </div>
     </nav>
@@ -369,7 +369,7 @@
   }
 
   .view-buttons button.active {
-    background: var(--comic-red);
+    background: var(--comic-purple);
     color: var(--comic-white);
     border-color: var(--comic-black);
     box-shadow: var(--shadow-comic);
@@ -384,6 +384,24 @@
   .time-navigation button {
     min-width: 50px;
     padding: 0.625rem 1rem;
+  }
+
+  .primary-action {
+    background: var(--comic-purple) !important;
+    color: var(--comic-white) !important;
+  }
+
+  .primary-action:hover {
+    background: #AB47BC !important;
+  }
+
+  .nav-arrow {
+    background: var(--comic-purple) !important;
+    color: var(--comic-white) !important;
+  }
+
+  .nav-arrow:hover {
+    background: #AB47BC !important;
   }
 
   .time-label {
