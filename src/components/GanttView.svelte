@@ -78,17 +78,61 @@
 
 <style>
   .gantt-container {
-    background-color: var(--bg-secondary);
-    border-radius: 0.5rem;
-    padding: 1rem;
+    background: linear-gradient(to bottom,
+      rgba(244, 232, 208, 0.6),
+      rgba(232, 220, 196, 0.4)
+    );
+    border-radius: 8px;
+    padding: 1.75rem;
     overflow-x: auto;
+    border: 3px solid var(--border-ornate);
+    box-shadow:
+      0 0 0 1px var(--leather-dark),
+      0 6px 20px var(--shadow-medium),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    position: relative;
+  }
+
+  .gantt-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 3px,
+        rgba(139, 110, 20, 0.02) 3px,
+        rgba(139, 110, 20, 0.02) 6px
+      );
+    border-radius: 8px;
+    pointer-events: none;
   }
 
   .gantt-header {
     position: relative;
-    height: 40px;
-    margin-bottom: 1rem;
-    border-bottom: 2px solid var(--border-color);
+    height: 50px;
+    margin-bottom: 1.5rem;
+    border-bottom: 3px solid var(--border-ornate);
+    z-index: 1;
+  }
+
+  .gantt-header::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right,
+      transparent,
+      var(--gold-accent) 10%,
+      var(--gold-accent) 90%,
+      transparent
+    );
   }
 
   .gantt-timeline {
@@ -103,79 +147,119 @@
   }
 
   .month-label {
-    font-size: 0.75rem;
-    color: var(--text-secondary);
-    font-weight: 500;
+    font-size: 0.85rem;
+    color: var(--text-gold);
+    font-weight: 700;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    text-shadow: 0 1px 2px var(--shadow-light);
   }
 
   .gantt-body {
-    min-height: 200px;
+    min-height: 250px;
+    position: relative;
+    z-index: 1;
   }
 
   .gantt-row {
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
   }
 
   .event-label {
     font-size: 0.875rem;
-    font-weight: 500;
+    font-weight: 600;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-family: 'Crimson Pro', serif;
   }
 
   .event-timeline {
     position: relative;
-    height: 40px;
-    background-color: var(--bg-tertiary);
-    border-radius: 0.25rem;
+    height: 48px;
+    background: linear-gradient(to bottom,
+      rgba(212, 196, 168, 0.4),
+      rgba(232, 220, 196, 0.2)
+    );
+    border-radius: 6px;
+    border: 2px solid rgba(139, 110, 20, 0.3);
+    box-shadow: inset 0 2px 4px var(--shadow-light);
   }
 
   .event-bar {
     position: absolute;
     height: 100%;
-    border-radius: 0.25rem;
+    border-radius: 6px;
     cursor: pointer;
-    transition: opacity 0.2s, transform 0.2s;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
-    padding: 0 0.5rem;
-    border: none;
+    padding: 0 0.875rem;
+    border: 2px solid rgba(0, 0, 0, 0.3);
     color: white;
-    font-weight: 500;
-    font-size: 0.75rem;
+    font-weight: 600;
+    font-size: 0.8rem;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    box-shadow:
+      0 2px 6px var(--shadow-medium),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
   }
 
   .event-bar:hover {
-    opacity: 0.9;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow:
+      0 6px 16px var(--shadow-medium),
+      0 0 20px rgba(212, 175, 55, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    border-color: var(--gold-accent);
+    z-index: 10;
   }
 
   .event-bar-label {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
   }
 
   .empty-state {
     text-align: center;
-    padding: 3rem;
+    padding: 4rem 2rem;
     color: var(--text-secondary);
+    font-family: 'Crimson Pro', serif;
+  }
+
+  .empty-state p:first-child {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-gold);
+    margin-bottom: 0.5rem;
   }
 
   .empty-hint {
-    font-size: 0.875rem;
-    margin-top: 0.5rem;
+    font-size: 1rem;
+    margin-top: 0.75rem;
+    font-style: italic;
   }
 
   @media (max-width: 768px) {
+    .gantt-container {
+      padding: 1.25rem;
+    }
+
     .gantt-row {
       grid-template-columns: 1fr;
     }
 
     .event-label {
       font-size: 0.75rem;
+    }
+
+    .event-bar {
+      font-size: 0.7rem;
     }
   }
 </style>
