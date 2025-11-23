@@ -52,7 +52,13 @@
       } else {
         tempEnd = dateStr;
       }
-      // Apply selection
+      // Don't auto-close - user must click Save button
+      selectingStart = true;
+    }
+  }
+
+  function handleSave() {
+    if (tempStart && tempEnd) {
       onChange(tempStart, tempEnd);
       showCalendar = false;
       selectingStart = true;
@@ -70,13 +76,13 @@
   function isSelected(date) {
     if (!date) return false;
     const dateStr = date.toISOString().split('T')[0];
-    return dateStr === tempStart || dateStr === tempEnd || dateStr === startDate || dateStr === endDate;
+    return dateStr === tempStart || dateStr === tempEnd;
   }
 
   function isInRange(date) {
     if (!date || !tempStart || !tempEnd) return false;
     const dateStr = date.toISOString().split('T')[0];
-    return dateStr >= tempStart && dateStr <= tempEnd;
+    return dateStr > tempStart && dateStr < tempEnd;
   }
 
   function formatDateRange() {
@@ -131,8 +137,11 @@
       </div>
 
       <div class="calendar-footer">
-        <button type="button" class="secondary" on:click={() => { showCalendar = false; selectingStart = true; }}>
+        <button type="button" class="secondary" on:click={() => { showCalendar = false; selectingStart = true; tempStart = startDate; tempEnd = endDate; }}>
           Cancel
+        </button>
+        <button type="button" on:click={handleSave} disabled={!tempStart || !tempEnd}>
+          Save Range
         </button>
       </div>
     </div>
@@ -148,28 +157,23 @@
     width: 100%;
     text-align: left;
     padding: 0.75rem 1rem;
-    background: linear-gradient(to bottom, #FFFEF8, var(--parchment-light));
+    background: var(--comic-white);
     color: var(--text-primary);
-    border: 2px solid var(--border-ornate);
-    border-radius: 6px;
+    border: var(--border-medium) solid var(--comic-black);
+    border-radius: 0;
     font-size: 0.95rem;
-    font-family: 'Crimson Pro', serif;
-    font-weight: 600;
+    font-family: 'Comic Neue', sans-serif;
+    font-weight: 700;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow:
-      inset 0 2px 4px var(--shadow-light),
-      0 2px 6px var(--shadow-light);
+    transition: all 0.2s ease;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
   }
 
   .date-button:hover {
-    border-color: var(--gold-accent);
-    background: #FFFEF8;
-    transform: translateY(-1px);
-    box-shadow:
-      inset 0 2px 4px var(--shadow-light),
-      0 0 0 3px var(--glow-gold),
-      0 4px 12px var(--shadow-medium);
+    border-color: var(--comic-blue);
+    background: var(--comic-white);
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.5);
   }
 
   .calendar-popup {
@@ -177,13 +181,11 @@
     top: 100%;
     left: 0;
     margin-top: 0.75rem;
-    background: linear-gradient(to bottom, var(--parchment-light), var(--parchment-medium));
-    border: 3px solid var(--border-ornate);
-    border-radius: 8px;
+    background: var(--comic-white);
+    border: var(--border-thick) solid var(--comic-black);
+    border-radius: 0;
     padding: 1.5rem;
-    box-shadow:
-      0 0 0 1px var(--leather-dark),
-      0 15px 35px var(--shadow-deep);
+    box-shadow: var(--shadow-comic-lg);
     z-index: 1000;
     min-width: 340px;
   }
@@ -194,15 +196,15 @@
     align-items: center;
     margin-bottom: 1rem;
     padding-bottom: 0.75rem;
-    border-bottom: 2px solid var(--border-ornate);
+    border-bottom: var(--border-medium) solid var(--comic-black);
   }
 
   .calendar-header span {
-    font-family: 'Cinzel', serif;
-    font-weight: 700;
-    color: var(--text-gold);
-    font-size: 1rem;
-    letter-spacing: 0.5px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    color: var(--comic-black);
+    font-size: 1.1rem;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
   }
 
@@ -215,17 +217,16 @@
   .calendar-instruction {
     text-align: center;
     font-size: 0.9rem;
-    color: var(--crimson-primary);
+    color: var(--comic-white);
     font-weight: 700;
-    font-family: 'Crimson Pro', serif;
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 1.5px;
     margin-bottom: 1.25rem;
     padding: 0.75rem;
-    background: linear-gradient(to bottom,
-      rgba(212, 175, 55, 0.2),
-      rgba(232, 220, 196, 0.3)
-    );
-    border-radius: 6px;
-    border: 2px solid var(--border-ornate);
+    background: var(--comic-red);
+    border-radius: 0;
+    border: var(--border-medium) solid var(--comic-black);
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.4);
   }
 
   .calendar-grid {
@@ -237,39 +238,35 @@
   .day-header {
     text-align: center;
     font-size: 0.75rem;
-    font-weight: 700;
-    font-family: 'Cinzel', serif;
-    color: var(--text-gold);
+    font-weight: 400;
+    font-family: 'Bebas Neue', sans-serif;
+    color: var(--comic-black);
     padding: 0.625rem 0;
     text-transform: uppercase;
-    letter-spacing: 0.3px;
+    letter-spacing: 1px;
   }
 
   .calendar-day {
     aspect-ratio: 1;
-    border: 2px solid var(--border-ornate);
-    background: linear-gradient(145deg, var(--parchment-light), #FFFEF8);
-    border-radius: 4px;
+    border: 2px solid var(--comic-black);
+    background: var(--comic-white);
+    border-radius: 0;
     font-size: 0.9rem;
-    font-weight: 600;
-    font-family: 'Crimson Pro', serif;
+    font-weight: 700;
+    font-family: 'Comic Neue', sans-serif;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     padding: 0;
     color: var(--text-primary);
-    box-shadow:
-      0 2px 4px var(--shadow-light),
-      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
   }
 
   .calendar-day:hover:not(:disabled) {
-    background: linear-gradient(145deg, var(--gold-dark), #8B6914);
-    color: var(--text-light);
-    border-color: var(--gold-accent);
-    transform: translateY(-2px);
-    box-shadow:
-      0 4px 8px var(--shadow-medium),
-      0 0 12px var(--glow-gold);
+    background: var(--comic-yellow);
+    color: var(--comic-black);
+    border-color: var(--comic-black);
+    transform: translate(-1px, -1px);
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
   }
 
   .calendar-day.empty {
@@ -280,26 +277,34 @@
   }
 
   .calendar-day.selected {
-    background: linear-gradient(145deg, var(--crimson-primary), var(--crimson-dark));
-    color: var(--text-light);
-    border-color: var(--gold-accent);
-    font-weight: 900;
-    box-shadow:
-      0 0 15px var(--glow-crimson),
-      0 4px 8px var(--shadow-medium),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    background: var(--comic-red);
+    color: var(--comic-white);
+    border-color: var(--comic-black);
+    font-weight: 700;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.6);
   }
 
   .calendar-day.in-range {
-    background: linear-gradient(145deg, rgba(212, 175, 55, 0.3), rgba(232, 220, 196, 0.5));
-    border-color: var(--gold-dark);
+    background: var(--comic-blue);
+    color: var(--comic-white);
+    border-color: var(--comic-black);
+    opacity: 0.7;
+  }
+
+  .calendar-day.in-range:hover {
+    opacity: 1;
   }
 
   .calendar-footer {
     margin-top: 1.25rem;
     padding-top: 1.25rem;
-    border-top: 2px solid var(--border-ornate);
+    border-top: var(--border-medium) solid var(--comic-black);
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .calendar-footer button {
+    flex: 1;
   }
 </style>

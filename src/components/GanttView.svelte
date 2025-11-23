@@ -78,18 +78,12 @@
 
 <style>
   .gantt-container {
-    background: linear-gradient(to bottom,
-      rgba(244, 232, 208, 0.6),
-      rgba(232, 220, 196, 0.4)
-    );
-    border-radius: 8px;
+    background: var(--comic-white);
+    border-radius: 0;
     padding: 1.75rem;
     overflow-x: auto;
-    border: 3px solid var(--border-ornate);
-    box-shadow:
-      0 0 0 1px var(--leather-dark),
-      0 6px 20px var(--shadow-medium),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    border: var(--border-thick) solid var(--comic-black);
+    box-shadow: var(--shadow-comic-lg);
     position: relative;
   }
 
@@ -100,15 +94,9 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background:
-      repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 3px,
-        rgba(139, 110, 20, 0.02) 3px,
-        rgba(139, 110, 20, 0.02) 6px
-      );
-    border-radius: 8px;
+    background-image:
+      radial-gradient(circle, rgba(0, 102, 204, 0.03) 1px, transparent 1px);
+    background-size: 12px 12px;
     pointer-events: none;
   }
 
@@ -116,23 +104,25 @@
     position: relative;
     height: 50px;
     margin-bottom: 1.5rem;
-    border-bottom: 3px solid var(--border-ornate);
+    border-bottom: var(--border-thick) solid var(--comic-black);
     z-index: 1;
   }
 
   .gantt-header::after {
     content: '';
     position: absolute;
-    bottom: -3px;
+    bottom: -4px;
     left: 0;
     right: 0;
-    height: 3px;
-    background: linear-gradient(to right,
-      transparent,
-      var(--gold-accent) 10%,
-      var(--gold-accent) 90%,
-      transparent
-    );
+    height: 4px;
+    background:
+      repeating-linear-gradient(
+        90deg,
+        var(--comic-red) 0px,
+        var(--comic-red) 20px,
+        var(--comic-yellow) 20px,
+        var(--comic-yellow) 40px
+      );
   }
 
   .gantt-timeline {
@@ -147,13 +137,12 @@
   }
 
   .month-label {
-    font-size: 0.85rem;
-    color: var(--text-gold);
-    font-weight: 700;
-    font-family: 'Cinzel', serif;
-    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+    color: var(--comic-black);
+    font-weight: 400;
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
-    text-shadow: 0 1px 2px var(--shadow-light);
   }
 
   .gantt-body {
@@ -178,43 +167,34 @@
   .event-timeline {
     position: relative;
     height: 48px;
-    background: linear-gradient(to bottom,
-      rgba(212, 196, 168, 0.4),
-      rgba(232, 220, 196, 0.2)
-    );
-    border-radius: 6px;
-    border: 2px solid rgba(139, 110, 20, 0.3);
-    box-shadow: inset 0 2px 4px var(--shadow-light);
+    background: var(--comic-gray-light);
+    border-radius: 0;
+    border: 2px solid var(--comic-gray);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
   .event-bar {
     position: absolute;
     height: 100%;
-    border-radius: 6px;
+    border-radius: 0;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     display: flex;
     align-items: center;
     padding: 0 0.875rem;
-    border: 2px solid rgba(0, 0, 0, 0.3);
+    border: var(--border-medium) solid var(--comic-black);
     color: white;
-    font-weight: 600;
-    font-size: 0.8rem;
-    font-family: 'Cinzel', serif;
-    letter-spacing: 0.3px;
+    font-weight: 400;
+    font-size: 0.85rem;
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 1px;
     text-transform: uppercase;
-    box-shadow:
-      0 2px 6px var(--shadow-medium),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.6);
   }
 
   .event-bar:hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow:
-      0 6px 16px var(--shadow-medium),
-      0 0 20px rgba(212, 175, 55, 0.3),
-      inset 0 1px 0 rgba(255, 255, 255, 0.4);
-    border-color: var(--gold-accent);
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.8);
     z-index: 10;
   }
 
@@ -222,32 +202,43 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
   }
 
   .empty-state {
     text-align: center;
     padding: 4rem 2rem;
     color: var(--text-secondary);
-    font-family: 'Crimson Pro', serif;
+    font-family: 'Comic Neue', sans-serif;
   }
 
   .empty-state p:first-child {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--text-gold);
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: 'Bebas Neue', sans-serif;
+    color: var(--comic-red);
     margin-bottom: 0.5rem;
+    letter-spacing: 2px;
   }
 
   .empty-hint {
     font-size: 1rem;
     margin-top: 0.75rem;
-    font-style: italic;
   }
 
   @media (max-width: 768px) {
     .gantt-container {
-      padding: 1.25rem;
+      padding: 1rem;
+    }
+
+    .month-label {
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      writing-mode: horizontal-tb;
+    }
+
+    .gantt-header {
+      height: 40px;
     }
 
     .gantt-row {
@@ -255,11 +246,23 @@
     }
 
     .event-label {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
     }
 
     .event-bar {
       font-size: 0.7rem;
+      padding: 0 0.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .month-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.5px;
+    }
+
+    .event-bar {
+      font-size: 0.6rem;
     }
   }
 </style>
