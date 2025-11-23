@@ -6,14 +6,14 @@
   import MonthlyView from './components/MonthlyView.svelte';
   import WeeklyView from './components/WeeklyView.svelte';
   import { saveEvents, loadEvents, saveCheckIns, loadCheckIns, exportData, importData } from './lib/storage.js';
-  import { getWeeksInYear } from './lib/dateUtils.js';
+  import { getWeeksInYear, getWeekNumber } from './lib/dateUtils.js';
 
   let events = [];
   let checkIns = {};
   let currentView = 'gantt'; // gantt, monthly, weekly
   let selectedYear = new Date().getFullYear();
   let selectedMonth = new Date().getMonth();
-  let selectedWeek = Math.ceil((new Date().getDate() + new Date(selectedYear, 0, 1).getDay()) / 7);
+  let selectedWeek = getWeekNumber(new Date());
 
   let showEventModal = false;
   let showEventPopup = false;
@@ -246,36 +246,34 @@
   main {
     max-width: 1500px;
     margin: 0 auto;
-    animation: fadeInUp 0.8s ease-out;
+    animation: fadeInUp 0.6s ease-out;
   }
 
   header {
-    margin-bottom: 2.5rem;
-    background: linear-gradient(to bottom,
-      rgba(212, 175, 55, 0.12),
-      transparent
-    );
+    margin-bottom: 2rem;
+    background: var(--comic-white);
     padding: 2rem;
-    border-radius: 12px;
-    border: 3px solid var(--border-ornate);
-    box-shadow:
-      0 0 0 1px var(--leather-dark),
-      0 8px 24px var(--shadow-medium),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-radius: 0;
+    border: var(--border-thick) solid var(--comic-black);
+    box-shadow: var(--shadow-comic-lg);
     position: relative;
-    animation: fadeInUp 0.8s ease-out 0.2s backwards;
+    animation: fadeInUp 0.6s ease-out 0.1s backwards;
   }
 
   header::before {
-    content: '⚔';
+    content: 'POW!';
     position: absolute;
-    top: -12px;
+    top: -18px;
     left: 50%;
-    transform: translateX(-50%);
-    font-size: 2rem;
-    color: var(--gold-accent);
-    text-shadow: 0 0 15px var(--glow-gold);
-    animation: float 3s ease-in-out infinite;
+    transform: translateX(-50%) rotate(-5deg);
+    font-size: 1.5rem;
+    font-family: 'Bangers', cursive;
+    color: var(--comic-red);
+    background: var(--comic-yellow);
+    padding: 0.25rem 1rem;
+    border: var(--border-medium) solid var(--comic-black);
+    box-shadow: var(--shadow-comic);
+    letter-spacing: 2px;
   }
 
   .header-content {
@@ -296,23 +294,20 @@
   .logo-img {
     width: 48px;
     height: 48px;
-    filter: drop-shadow(0 4px 8px var(--shadow-medium));
-    animation: float 4s ease-in-out infinite;
+    filter: drop-shadow(3px 3px 0px var(--comic-black));
   }
 
   h1 {
-    font-family: 'MedievalSharp', 'Cinzel', serif;
+    font-family: 'Bangers', cursive;
     font-size: 2.5rem;
-    background: linear-gradient(135deg, var(--crimson-primary), var(--gold-accent), var(--crimson-dark));
-    background-size: 200% 200%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--comic-red);
     margin: 0;
-    letter-spacing: 2px;
-    text-shadow: 0 2px 4px var(--shadow-light);
-    animation: shimmer 8s ease infinite;
-    filter: drop-shadow(0 2px 4px rgba(139, 21, 56, 0.3));
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-shadow:
+      3px 3px 0 var(--comic-black),
+      -1px -1px 0 var(--comic-white);
+    font-weight: 400;
   }
 
   .header-actions {
@@ -325,27 +320,22 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(to bottom,
-      rgba(212, 196, 168, 0.3),
-      rgba(232, 220, 196, 0.2)
-    );
+    background: var(--comic-gray-light);
     padding: 1.25rem 1.5rem;
-    border-radius: 8px;
+    border-radius: 0;
     flex-wrap: wrap;
     gap: 1.5rem;
-    border: 2px solid var(--border-ornate);
-    box-shadow:
-      0 4px 12px var(--shadow-light),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    border: var(--border-medium) solid var(--comic-black);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
     position: relative;
   }
 
   .view-nav::before,
   .view-nav::after {
-    content: '◈';
+    content: '★';
     position: absolute;
-    color: var(--gold-dark);
-    font-size: 1rem;
+    color: var(--comic-red);
+    font-size: 1.2rem;
     top: 50%;
     transform: translateY(-50%);
   }
@@ -366,25 +356,23 @@
   }
 
   .view-buttons button {
-    background: linear-gradient(145deg, var(--parchment-dark), var(--parchment-medium));
-    color: var(--text-secondary);
-    border-color: var(--border-ornate);
+    background: var(--comic-white);
+    color: var(--comic-black);
+    border-color: var(--comic-black);
     min-width: 100px;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.6);
   }
 
   .view-buttons button:hover {
-    background: linear-gradient(145deg, var(--gold-dark), #8B6914);
-    color: var(--text-light);
+    background: var(--comic-blue);
+    color: var(--comic-white);
   }
 
   .view-buttons button.active {
-    background: linear-gradient(145deg, var(--crimson-primary), var(--crimson-dark));
-    color: var(--text-light);
-    border-color: var(--gold-accent);
-    box-shadow:
-      0 0 15px var(--glow-crimson),
-      0 4px 8px var(--shadow-medium),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    background: var(--comic-red);
+    color: var(--comic-white);
+    border-color: var(--comic-black);
+    box-shadow: var(--shadow-comic);
   }
 
   .time-navigation {
@@ -394,24 +382,24 @@
   }
 
   .time-navigation button {
-    min-width: 45px;
+    min-width: 50px;
     padding: 0.625rem 1rem;
   }
 
   .time-label {
     min-width: 240px;
     text-align: center;
-    font-weight: 700;
-    font-size: 1.1rem;
-    font-family: 'Cinzel', serif;
-    color: var(--text-gold);
-    letter-spacing: 0.5px;
+    font-weight: 400;
+    font-size: 1.2rem;
+    font-family: 'Bebas Neue', sans-serif;
+    color: var(--comic-black);
+    letter-spacing: 2px;
     text-transform: uppercase;
   }
 
   .content {
     min-height: 500px;
-    animation: fadeInUp 0.8s ease-out 0.4s backwards;
+    animation: fadeInUp 0.6s ease-out 0.2s backwards;
   }
 
   @media (max-width: 768px) {

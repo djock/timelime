@@ -93,6 +93,11 @@
             {endDate}
             onChange={handleDateRangeChange}
           />
+          {#if startDate && endDate}
+            <div class="selected-range">
+              📅 Selected: {new Date(startDate).toLocaleDateString()} - {new Date(endDate).toLocaleDateString()}
+            </div>
+          {/if}
         </div>
 
         <div class="form-group">
@@ -152,6 +157,20 @@
 </div>
 
 <style>
+  .selected-range {
+    margin-top: 0.75rem;
+    padding: 0.75rem;
+    background: var(--comic-blue);
+    color: var(--comic-white);
+    border: var(--border-medium) solid var(--comic-black);
+    border-radius: 0;
+    font-family: 'Comic Neue', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-align: center;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.4);
+  }
+
   .days-selector {
     display: flex;
     gap: 0.625rem;
@@ -160,40 +179,33 @@
 
   .day-button {
     padding: 0.625rem 1rem;
-    border: 2px solid var(--border-ornate);
-    background: linear-gradient(145deg, var(--parchment-light), var(--parchment-medium));
-    color: var(--text-secondary);
-    border-radius: 6px;
+    border: var(--border-medium) solid var(--comic-black);
+    background: var(--comic-white);
+    color: var(--comic-black);
+    border-radius: 0;
     font-size: 0.8rem;
-    font-weight: 700;
-    font-family: 'Cinzel', serif;
-    letter-spacing: 0.3px;
+    font-weight: 400;
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 1px;
     text-transform: uppercase;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow:
-      0 2px 4px var(--shadow-light),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transition: all 0.2s ease;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
   }
 
   .day-button:hover {
-    border-color: var(--gold-accent);
-    background: linear-gradient(145deg, var(--gold-dark), #8B6914);
-    color: var(--text-light);
-    transform: translateY(-2px);
-    box-shadow:
-      0 4px 8px var(--shadow-medium),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: var(--comic-black);
+    background: var(--comic-yellow);
+    color: var(--comic-black);
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.5);
   }
 
   .day-button.selected {
-    background: linear-gradient(145deg, var(--crimson-primary), var(--crimson-dark));
-    color: var(--text-light);
-    border-color: var(--gold-accent);
-    box-shadow:
-      0 0 12px var(--glow-crimson),
-      0 4px 8px var(--shadow-medium),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    background: var(--comic-red);
+    color: var(--comic-white);
+    border-color: var(--comic-black);
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.6);
   }
 
   .color-picker {
@@ -205,23 +217,18 @@
   .color-preview {
     width: 50px;
     height: 50px;
-    border-radius: 50%;
-    border: 3px solid var(--border-ornate);
+    border-radius: 0;
+    border: var(--border-medium) solid var(--comic-black);
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow:
-      0 4px 8px var(--shadow-medium),
-      inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.4);
     position: relative;
   }
 
   .color-preview:hover {
-    transform: scale(1.15) rotate(5deg);
-    border-color: var(--gold-accent);
-    box-shadow:
-      0 6px 16px var(--shadow-medium),
-      0 0 15px var(--glow-gold),
-      inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    transform: translate(-2px, -2px) rotate(-5deg);
+    border-color: var(--comic-black);
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.6);
   }
 
   .color-picker input[type="color"] {

@@ -79,17 +79,14 @@
 
 <style>
   .weekly-view {
-    background: linear-gradient(to bottom,
-      rgba(244, 232, 208, 0.6),
-      rgba(232, 220, 196, 0.4)
-    );
-    border-radius: 8px;
+    background: var(--comic-white);
+    border-radius: 0;
     padding: 1.75rem;
-    border: 3px solid var(--border-ornate);
-    box-shadow:
-      0 0 0 1px var(--leather-dark),
-      0 6px 20px var(--shadow-medium),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    border: var(--border-thick) solid var(--comic-black);
+    box-shadow: var(--shadow-comic-lg);
+    background-image:
+      radial-gradient(circle, rgba(237, 28, 36, 0.03) 1px, transparent 1px);
+    background-size: 12px 12px;
   }
 
   .week-header {
@@ -100,20 +97,22 @@
 
   .week-header h2 {
     font-size: 1.75rem;
-    font-family: 'Cinzel', serif;
-    color: var(--text-gold);
-    font-weight: 700;
-    letter-spacing: 1px;
+    font-family: 'Bangers', cursive;
+    color: var(--comic-blue);
+    font-weight: 400;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    text-shadow: 0 2px 4px var(--shadow-light);
+    text-shadow:
+      2px 2px 0 var(--comic-black),
+      -1px -1px 0 var(--comic-white);
   }
 
   .week-range {
     font-size: 1rem;
     color: var(--text-secondary);
     margin-top: 0.5rem;
-    font-family: 'Crimson Pro', serif;
-    font-weight: 600;
+    font-family: 'Comic Neue', sans-serif;
+    font-weight: 700;
   }
 
   .week-grid {
@@ -123,61 +122,49 @@
   }
 
   .week-day {
-    background: linear-gradient(to bottom,
-      rgba(255, 254, 248, 0.9),
-      rgba(244, 232, 208, 0.7)
-    );
-    border: 2px solid var(--border-ornate);
-    border-radius: 8px;
+    background: var(--comic-white);
+    border: var(--border-medium) solid var(--comic-black);
+    border-radius: 0;
     min-height: 320px;
     display: flex;
     flex-direction: column;
-    box-shadow:
-      0 4px 12px var(--shadow-light),
-      inset 0 1px 0 rgba(255, 255, 255, 0.5);
-    transition: all 0.3s ease;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.4);
+    transition: all 0.2s ease;
   }
 
   .week-day:hover {
-    transform: translateY(-2px);
-    box-shadow:
-      0 6px 16px var(--shadow-medium),
-      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.6);
   }
 
   .week-day.today {
-    border: 3px solid var(--gold-accent);
-    box-shadow:
-      0 0 20px var(--glow-gold),
-      0 6px 16px var(--shadow-medium),
-      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    border: var(--border-thick) solid var(--comic-red);
+    box-shadow: 4px 4px 0px var(--comic-yellow);
   }
 
   .day-header {
     padding: 1.25rem;
     text-align: center;
-    border-bottom: 2px solid var(--border-ornate);
-    background: linear-gradient(to bottom,
-      rgba(212, 175, 55, 0.15),
-      transparent
-    );
+    border-bottom: var(--border-medium) solid var(--comic-black);
+    background: var(--comic-yellow);
   }
 
   .day-name {
-    font-weight: 700;
+    font-weight: 400;
     font-size: 0.9rem;
-    color: var(--text-gold);
-    font-family: 'Cinzel', serif;
-    letter-spacing: 0.5px;
+    color: var(--comic-black);
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
   }
 
   .day-date {
     font-size: 1.75rem;
-    font-weight: 900;
+    font-weight: 400;
     margin-top: 0.375rem;
-    font-family: 'Cinzel', serif;
-    color: var(--crimson-primary);
+    font-family: 'Bangers', cursive;
+    color: var(--comic-red);
+    text-shadow: 2px 2px 0px var(--comic-black);
   }
 
   .day-events {
@@ -190,39 +177,40 @@
   }
 
   .event-card {
-    background: linear-gradient(145deg, var(--parchment-light), #FFFEF8);
-    border-radius: 6px;
+    background: var(--comic-gray-light);
+    border-radius: 0;
     padding: 0.875rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     text-align: left;
-    border: 2px solid var(--border-ornate);
+    border: var(--border-thin) solid var(--comic-black);
     color: var(--text-primary);
-    box-shadow:
-      0 2px 6px var(--shadow-light),
-      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
   }
 
   .event-card:hover {
-    transform: translateY(-3px);
-    box-shadow:
-      0 6px 12px var(--shadow-medium),
-      0 0 15px var(--glow-gold);
-    border-color: var(--gold-accent);
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.5);
   }
 
   .event-title {
     font-weight: 700;
     font-size: 0.95rem;
     margin-bottom: 0.375rem;
-    font-family: 'Crimson Pro', serif;
+    font-family: 'Comic Neue', sans-serif;
     color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .event-time {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: var(--text-secondary);
-    font-family: 'Crimson Pro', serif;
+    font-family: 'Comic Neue', sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   @media (max-width: 1200px) {

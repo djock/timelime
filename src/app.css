@@ -1,37 +1,39 @@
 :root {
-  /* RPG Color Palette - Rich & Dramatic */
-  --crimson-primary: #8B1538;
-  --crimson-dark: #5C0E25;
-  --crimson-light: #A52045;
-  --gold-accent: #D4AF37;
-  --gold-light: #F4D03F;
-  --gold-dark: #B8941F;
+  /* Marvel Comic Book Color Palette - Bold & Dramatic */
+  --comic-red: #ED1C24;
+  --comic-red-dark: #B71C1C;
+  --comic-red-light: #FF5252;
 
-  --leather-dark: #2C1810;
-  --leather-medium: #4A2C1A;
-  --leather-light: #6B4423;
+  --comic-blue: #0066CC;
+  --comic-blue-dark: #004D99;
+  --comic-blue-light: #42A5F5;
 
-  --parchment-light: #F4E8D0;
-  --parchment-medium: #E8DCC4;
-  --parchment-dark: #D4C4A8;
+  --comic-yellow: #FFD700;
+  --comic-yellow-dark: #FFC107;
+  --comic-yellow-light: #FFEB3B;
 
-  --emerald-accent: #1B5E20;
-  --sapphire-accent: #1565C0;
+  --comic-white: #FFFFFF;
+  --comic-black: #000000;
+  --comic-gray: #9E9E9E;
+  --comic-gray-light: #E0E0E0;
+  --comic-gray-dark: #424242;
 
-  --text-primary: #1a1108;
-  --text-secondary: #4A3728;
-  --text-gold: #8B6914;
-  --text-light: #F4E8D0;
+  --comic-green: #4CAF50;
+  --comic-orange: #FF6B00;
+  --comic-purple: #9C27B0;
 
-  --border-ornate: #8B6914;
-  --border-dark: #3D2817;
+  --text-primary: #1A1A1A;
+  --text-secondary: #424242;
+  --text-light: #FFFFFF;
+  --text-accent: #ED1C24;
 
-  --shadow-deep: rgba(28, 16, 8, 0.6);
-  --shadow-medium: rgba(28, 16, 8, 0.4);
-  --shadow-light: rgba(28, 16, 8, 0.2);
+  --border-thick: 4px;
+  --border-medium: 3px;
+  --border-thin: 2px;
 
-  --glow-gold: rgba(212, 175, 55, 0.4);
-  --glow-crimson: rgba(139, 21, 56, 0.3);
+  --shadow-comic: 4px 4px 0px rgba(0, 0, 0, 0.8);
+  --shadow-comic-lg: 6px 6px 0px rgba(0, 0, 0, 0.8);
+  --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 * {
@@ -51,66 +53,67 @@
   }
 }
 
-@keyframes shimmer {
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes comic-pop {
   0% {
-    background-position: -1000px 0;
+    transform: scale(0.95);
+  }
+  50% {
+    transform: scale(1.02);
   }
   100% {
-    background-position: 1000px 0;
+    transform: scale(1);
   }
 }
 
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
+@keyframes halftone-rotate {
+  from {
+    background-position: 0 0;
   }
-  50% {
-    transform: translateY(-6px);
+  to {
+    background-position: 40px 40px;
   }
 }
 
-@keyframes glow {
+/* Halftone pattern for comic book effect */
+@keyframes dots-animation {
   0%, 100% {
-    box-shadow: 0 0 5px var(--glow-gold), 0 0 10px var(--glow-gold);
+    opacity: 0.3;
   }
   50% {
-    box-shadow: 0 0 10px var(--glow-gold), 0 0 20px var(--glow-gold), 0 0 30px var(--glow-gold);
+    opacity: 0.5;
   }
 }
 
 body {
-  font-family: 'Crimson Pro', Georgia, serif;
+  font-family: 'Comic Neue', 'Arial', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--text-primary);
-  line-height: 1.7;
+  line-height: 1.6;
   min-height: 100vh;
 
-  /* Epic atmospheric background */
+  /* Comic book halftone background */
   background:
-    linear-gradient(135deg,
-      rgba(139, 21, 56, 0.05) 0%,
-      rgba(212, 175, 55, 0.08) 50%,
-      rgba(27, 94, 32, 0.05) 100%
-    ),
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(139, 110, 20, 0.02) 2px,
-      rgba(139, 110, 20, 0.02) 4px
-    ),
-    linear-gradient(
-      to bottom,
-      #F8F0E0 0%,
-      #F4E8D0 50%,
-      #E8DCC4 100%
-    );
-
-  /* Parchment texture overlay */
+    radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(237, 28, 36, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(0, 102, 204, 0.08) 0%, transparent 50%),
+    repeating-radial-gradient(circle at 0 0, transparent 0, #E8F5E9 2px, transparent 4px),
+    linear-gradient(180deg, #FFF9E6 0%, #FFFEF8 50%, #FFF3E0 100%);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 4px 4px, 100% 100%;
+  background-attachment: fixed;
   position: relative;
 }
 
+/* Halftone dot overlay for authentic comic look */
 body::before {
   content: '';
   position: fixed;
@@ -118,12 +121,15 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: 0.03;
+  opacity: 0.4;
   background-image:
-    radial-gradient(circle at 20% 50%, transparent 0%, rgba(0,0,0,.05) 100%),
-    radial-gradient(circle at 80% 80%, transparent 0%, rgba(0,0,0,.04) 100%);
+    radial-gradient(circle, rgba(0, 0, 0, 0.15) 1px, transparent 1px),
+    radial-gradient(circle, rgba(0, 102, 204, 0.1) 1px, transparent 1px);
+  background-size: 8px 8px, 12px 12px;
+  background-position: 0 0, 4px 4px;
   pointer-events: none;
   z-index: 0;
+  animation: dots-animation 4s ease-in-out infinite;
 }
 
 #app {
@@ -132,161 +138,123 @@ body::before {
   padding: 2rem;
   position: relative;
   z-index: 1;
-  animation: fadeInUp 0.6s ease-out;
+  animation: fadeInUp 0.5s ease-out;
 }
 
-/* Ornate Buttons */
+/* Comic Book Style Buttons */
 button {
-  font-family: 'Cinzel', serif;
-  background: linear-gradient(145deg, var(--crimson-primary), var(--crimson-dark));
+  font-family: 'Bebas Neue', 'Arial Black', sans-serif;
+  background: var(--comic-red);
   color: var(--text-light);
-  border: 2px solid var(--gold-dark);
+  border: var(--border-thick) solid var(--comic-black);
   padding: 0.75rem 1.5rem;
-  border-radius: 4px;
+  border-radius: 0;
   cursor: pointer;
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  transition: all 0.3s ease;
+  transition: all 0.15s ease;
   position: relative;
+  box-shadow: var(--shadow-comic);
+  white-space: nowrap;
   overflow: hidden;
-  box-shadow:
-    0 4px 6px var(--shadow-medium),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-
-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
-  transition: left 0.5s;
-}
-
-button:hover::before {
-  left: 100%;
+  text-overflow: ellipsis;
 }
 
 button:hover {
-  background: linear-gradient(145deg, var(--crimson-light), var(--crimson-primary));
-  border-color: var(--gold-accent);
-  transform: translateY(-2px);
-  box-shadow:
-    0 6px 12px var(--shadow-medium),
-    0 0 20px var(--glow-crimson),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  background: var(--comic-red-light);
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.8);
 }
 
 button:active {
-  transform: translateY(0);
-  box-shadow:
-    0 2px 4px var(--shadow-medium),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.8);
+}
+
+button.secondary {
+  background: var(--comic-yellow);
+  color: var(--comic-black);
+  border-color: var(--comic-black);
+}
+
+button.secondary:hover {
+  background: var(--comic-yellow-light);
 }
 
 button.warning {
-  background: linear-gradient(145deg, #D97706, #B45309);
-  border-color: var(--gold-dark);
+  background: var(--comic-orange);
+  border-color: var(--comic-black);
 }
 
 button.warning:hover {
-  background: linear-gradient(145deg, #F59E0B, #D97706);
-  border-color: var(--gold-accent);
+  background: #FF8534;
+}
+
+button.danger {
+  background: var(--comic-black);
+  color: var(--comic-yellow);
+  border-color: var(--comic-red);
+  border-width: var(--border-thick);
+}
+
+button.danger:hover {
+  background: var(--comic-red-dark);
+  color: var(--comic-white);
 }
 
 button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  filter: grayscale(0.5);
+  filter: grayscale(0.7);
 }
 
-button.secondary {
-  background: linear-gradient(145deg, var(--gold-dark), #8B6914);
-  border-color: var(--leather-medium);
-  color: var(--leather-dark);
-}
-
-button.secondary:hover {
-  background: linear-gradient(145deg, var(--gold-accent), var(--gold-dark));
-  border-color: var(--gold-light);
-  color: var(--leather-dark);
-}
-
-button.danger {
-  background: linear-gradient(145deg, #B91C1C, #7F1D1D);
-  border-color: var(--border-dark);
-}
-
-button.danger:hover {
-  background: linear-gradient(145deg, #DC2626, #B91C1C);
-  border-color: var(--gold-dark);
-}
-
-/* Ornate Form Inputs */
+/* Comic Style Form Inputs */
 input,
 select,
 textarea {
-  font-family: 'Crimson Pro', Georgia, serif;
-  background: linear-gradient(to bottom, #FFFEF8, var(--parchment-light));
+  font-family: 'Comic Neue', 'Arial', sans-serif;
+  background: var(--comic-white);
   color: var(--text-primary);
-  border: 2px solid var(--border-ornate);
+  border: var(--border-medium) solid var(--comic-black);
   padding: 0.625rem 0.875rem;
-  border-radius: 4px;
+  border-radius: 0;
   font-size: 1rem;
   width: 100%;
-  transition: all 0.3s ease;
-  box-shadow:
-    inset 0 2px 4px var(--shadow-light),
-    0 1px 2px var(--shadow-light);
+  transition: all 0.2s ease;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
 }
 
 input:focus,
 select:focus,
 textarea:focus {
   outline: none;
-  border-color: var(--gold-accent);
-  background: #FFFEF8;
-  box-shadow:
-    inset 0 2px 4px var(--shadow-light),
-    0 0 0 3px var(--glow-gold),
-    0 2px 8px var(--shadow-medium);
-  transform: translateY(-1px);
+  border-color: var(--comic-blue);
+  border-width: var(--border-thick);
+  box-shadow: var(--shadow-comic);
+  transform: translate(-1px, -1px);
 }
 
 label {
   display: block;
-  margin-bottom: 0.375rem;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--text-secondary);
-  font-family: 'Cinzel', serif;
-  letter-spacing: 0.3px;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 1px;
   text-transform: uppercase;
-  font-size: 0.75rem;
 }
 
-/* Epic Modal Styling */
+/* Comic Book Modal Styling */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background:
-    radial-gradient(circle at center,
-      rgba(28, 16, 8, 0.4),
-      rgba(28, 16, 8, 0.7)
-    );
-  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.85);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -296,89 +264,97 @@ label {
 }
 
 .modal {
-  background:
-    linear-gradient(to bottom, var(--parchment-light), var(--parchment-medium)),
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(139, 110, 20, 0.03) 2px,
-      rgba(139, 110, 20, 0.03) 4px
-    );
-  border-radius: 8px;
+  background: var(--comic-white);
+  border-radius: 0;
   max-width: 650px;
   width: 100%;
   max-height: 90vh;
   overflow-y: auto;
   box-shadow:
-    0 0 0 3px var(--gold-dark),
-    0 0 0 6px var(--leather-dark),
-    0 20px 60px var(--shadow-deep),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  border: 3px solid var(--border-ornate);
+    0 0 0 var(--border-thick) var(--comic-black),
+    var(--shadow-comic-lg),
+    0 20px 60px rgba(0, 0, 0, 0.4);
+  border: var(--border-thick) solid var(--comic-black);
   position: relative;
-  animation: fadeInUp 0.4s ease-out 0.1s backwards;
+  animation: comic-pop 0.4s ease-out;
+
+  /* Halftone overlay on modal */
+  background-image:
+    radial-gradient(circle, rgba(0, 102, 204, 0.03) 1px, transparent 1px);
+  background-size: 12px 12px;
 }
 
-/* Ornate corner decorations */
-.modal::before,
-.modal::after {
-  content: '◆';
-  position: absolute;
-  color: var(--gold-accent);
-  font-size: 1.5rem;
-  text-shadow: 0 0 10px var(--glow-gold);
-}
-
+/* Comic burst corners */
 .modal::before {
-  top: -8px;
-  left: 50%;
-  transform: translateX(-50%);
+  content: '★';
+  position: absolute;
+  top: -12px;
+  left: 20px;
+  color: var(--comic-yellow);
+  font-size: 2rem;
+  text-shadow:
+    -2px -2px 0 var(--comic-black),
+    2px -2px 0 var(--comic-black),
+    -2px 2px 0 var(--comic-black),
+    2px 2px 0 var(--comic-black);
+  z-index: 1;
 }
 
 .modal::after {
-  bottom: -8px;
-  left: 50%;
-  transform: translateX(-50%);
+  content: '★';
+  position: absolute;
+  top: -12px;
+  right: 20px;
+  color: var(--comic-red);
+  font-size: 2rem;
+  text-shadow:
+    -2px -2px 0 var(--comic-black),
+    2px -2px 0 var(--comic-black),
+    -2px 2px 0 var(--comic-black),
+    2px 2px 0 var(--comic-black);
+  z-index: 1;
 }
 
 .modal-header {
-  padding: 1.75rem 2rem;
-  border-bottom: 2px solid var(--border-ornate);
+  padding: 1.5rem 2rem;
+  border-bottom: var(--border-thick) solid var(--comic-black);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(to bottom,
-    rgba(212, 175, 55, 0.15),
-    transparent
-  );
+  background:
+    linear-gradient(135deg, var(--comic-yellow) 0%, var(--comic-yellow-light) 100%);
   position: relative;
 }
 
 .modal-header::after {
   content: '';
   position: absolute;
-  bottom: -2px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60%;
-  height: 2px;
-  background: linear-gradient(to right,
-    transparent,
-    var(--gold-accent),
-    transparent
-  );
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--border-thick);
+  background:
+    repeating-linear-gradient(
+      90deg,
+      var(--comic-black) 0px,
+      var(--comic-black) 10px,
+      var(--comic-red) 10px,
+      var(--comic-red) 20px
+    );
 }
 
 .modal-header h2 {
-  font-family: 'Cinzel', serif;
-  font-weight: 700;
-  color: var(--text-gold);
-  font-size: 1.5rem;
-  letter-spacing: 1px;
+  font-family: 'Bangers', cursive;
+  font-weight: 400;
+  color: var(--comic-red);
+  font-size: 2rem;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  text-shadow: 0 2px 4px var(--shadow-light);
+  text-shadow:
+    3px 3px 0 var(--comic-black),
+    -1px -1px 0 var(--comic-white);
   margin: 0;
+  line-height: 1.2;
 }
 
 .modal-content {
@@ -387,101 +363,138 @@ label {
 
 .modal-footer {
   padding: 1.5rem 2rem;
-  border-top: 2px solid var(--border-ornate);
+  border-top: var(--border-thick) solid var(--comic-black);
   display: flex;
   justify-content: flex-end;
   gap: 0.75rem;
-  background: linear-gradient(to top,
-    rgba(212, 175, 55, 0.1),
-    transparent
-  );
+  background: var(--comic-gray-light);
+  flex-wrap: wrap;
 }
 
 .form-group {
   margin-bottom: 1.5rem;
 }
 
-/* Contribution Grid with RPG styling */
+/* Contribution Grid with Comic Book styling */
 .contribution-grid {
   display: grid;
-  gap: 3px;
+  gap: 4px;
   padding: 1.5rem 0;
 }
 
 .contribution-cell {
   aspect-ratio: 1;
-  border-radius: 3px;
-  background: var(--parchment-dark);
-  transition: all 0.3s ease;
-  min-width: 10px;
-  min-height: 10px;
-  border: 1px solid rgba(139, 110, 20, 0.2);
-  box-shadow: inset 0 1px 2px var(--shadow-light);
+  border-radius: 0;
+  background: var(--comic-gray-light);
+  transition: all 0.2s ease;
+  min-width: 12px;
+  min-height: 12px;
+  border: 2px solid var(--comic-black);
   cursor: pointer;
+  position: relative;
 }
 
 .contribution-cell:hover {
-  transform: scale(1.15);
+  transform: scale(1.2);
   z-index: 10;
+  box-shadow: var(--shadow-comic);
 }
 
 .contribution-cell.checked {
-  background: linear-gradient(135deg, var(--emerald-accent), #2E7D32);
-  border-color: var(--gold-dark);
-  box-shadow:
-    0 0 8px rgba(27, 94, 32, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  animation: glow 2s infinite;
+  background: var(--comic-green);
+  border-color: var(--comic-black);
+  box-shadow: inset 0 0 0 2px var(--comic-white);
 }
 
 .contribution-cell.missed {
-  background: linear-gradient(135deg, #B91C1C, #7F1D1D);
-  border-color: var(--leather-dark);
-  box-shadow:
-    0 0 6px rgba(185, 28, 28, 0.4),
-    inset 0 1px 0 rgba(0, 0, 0, 0.2);
+  background: var(--comic-red);
+  border-color: var(--comic-black);
+  position: relative;
+}
+
+.contribution-cell.missed::after {
+  content: '✕';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--comic-white);
+  font-size: 0.7em;
+  font-weight: bold;
 }
 
 .contribution-cell.future {
-  background: var(--parchment-medium);
-  opacity: 0.4;
-  border-color: rgba(139, 110, 20, 0.1);
+  background: var(--comic-white);
+  opacity: 0.6;
+  border-color: var(--comic-gray);
 }
 
-/* Scrollbar Styling */
+/* Comic Book Scrollbar */
 ::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--parchment-dark);
-  border-left: 2px solid var(--border-ornate);
+  background: var(--comic-gray-light);
+  border: 2px solid var(--comic-black);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, var(--gold-dark), var(--leather-medium));
-  border-radius: 6px;
-  border: 2px solid var(--parchment-dark);
+  background:
+    repeating-linear-gradient(
+      45deg,
+      var(--comic-red),
+      var(--comic-red) 10px,
+      var(--comic-red-dark) 10px,
+      var(--comic-red-dark) 20px
+    );
+  border: 2px solid var(--comic-black);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, var(--gold-accent), var(--gold-dark));
+  background: var(--comic-red-light);
 }
 
-/* Responsive */
+/* Responsive adjustments */
 @media (max-width: 768px) {
   #app {
     padding: 1rem;
   }
 
   button {
-    padding: 0.625rem 1.25rem;
-    font-size: 0.8rem;
+    padding: 0.625rem 1rem;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
   }
 
   .modal {
     margin: 0.5rem;
+  }
+
+  .modal-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .modal-content {
+    padding: 1.5rem;
+  }
+
+  .modal-footer {
+    padding: 1rem;
+  }
+
+  .modal-footer button {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  button {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.75rem;
+    letter-spacing: 0.5px;
   }
 
   .modal-header h2 {
