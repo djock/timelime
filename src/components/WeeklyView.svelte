@@ -86,7 +86,7 @@
       radial-gradient(circle, rgba(237, 28, 36, 0.03) 1px, transparent 1px);
     background-size: 12px 12px;
     max-width: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
   }
 
   .week-header {
@@ -127,12 +127,10 @@
     background: var(--comic-white);
     border: var(--border-medium) solid var(--comic-black);
     border-radius: 0;
-    min-height: 150px;
     display: flex;
     flex-direction: column;
     box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.4);
     transition: all 0.2s ease;
-    height: 100%;
   }
 
   .week-day:hover {
@@ -225,20 +223,53 @@
 
   @media (max-width: 768px) {
     .weekly-view {
-      padding: 1.25rem;
+      padding: 1rem;
     }
 
     .week-grid {
       grid-template-columns: repeat(2, 1fr);
-      grid-auto-rows: minmax(120px, auto);
+      grid-auto-rows: minmax(140px, auto);
+      gap: 0.625rem;
     }
 
-    .week-day {
-      min-height: 120px;
+    .week-header {
+      margin-bottom: 1.25rem;
     }
 
     .week-header h2 {
       font-size: 1.35rem;
+    }
+
+    .day-header {
+      padding: 0.875rem;
+    }
+
+    .day-date {
+      font-size: 1.4rem;
+    }
+
+    .day-events {
+      padding: 0.625rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .weekly-view {
+      padding: 0.75rem;
+    }
+
+    .week-grid {
+      grid-template-columns: 1fr;
+      grid-auto-rows: minmax(120px, auto);
+      gap: 0.5rem;
+    }
+
+    .day-header {
+      padding: 0.75rem;
+    }
+
+    .day-date {
+      font-size: 1.25rem;
     }
   }
 </style>
