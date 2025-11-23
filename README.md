@@ -1,6 +1,15 @@
 # TimeLime 🍋
 
-A beautiful event tracker and habit tracker web app with calendar views and GitHub contribution-style check-in visualization.
+A beautiful event tracker and habit tracker available as both a web app and a native macOS menu bar application.
+
+## 📦 Project Structure
+
+This repository contains two applications:
+
+- **[web-app/](web-app/)** - Svelte web application deployed on GitHub Pages
+- **[macos-app/](macos-app/)** - Native macOS menu bar app built with SwiftUI
+
+Both apps share the same core functionality with platform-specific optimizations.
 
 ## 🌟 Features
 
@@ -9,56 +18,61 @@ A beautiful event tracker and habit tracker web app with calendar views and GitH
   - Gantt Chart (yearly timeline view)
   - Monthly Calendar
   - Weekly Calendar
-- **Flexible Check-ins**: Track progress with daily, weekly, monthly, or yearly check-ins
+- **Flexible Check-ins**: Track progress with daily, weekly, monthly, yearly, or custom check-ins
 - **GitHub-style Progress Grid**: Visualize your consistency with a contribution calendar
-- **Data Persistence**: All data stored in cookies for automatic persistence
+- **Data Persistence**:
+  - Web: Browser cookies
+  - macOS: Local file storage
 - **Export/Import**: Backup and restore your data in JSON format
-- **Responsive Design**: Works beautifully on desktop and mobile devices
-- **Dark Theme**: Easy on the eyes with a lime-green accent color
+- **Beautiful UI**:
+  - Web: Responsive design with dark theme
+  - macOS: Native macOS design following Apple HIG
 
-## 🚀 Live Demo
+## 🚀 Getting Started
 
-Visit the live app at: [https://djock.github.io/timelime/](https://djock.github.io/timelime/)
+### Web App
 
-## 💻 Development
+🌐 **Live Demo**: [https://djock.github.io/timelime/](https://djock.github.io/timelime/)
 
-### Prerequisites
-
-- Node.js 18 or higher
-- npm
-
-### Installation
+#### Development
 
 ```bash
-# Clone the repository
-git clone https://github.com/djock/timelime.git
-cd timelime
-
-# Install dependencies
+cd web-app
 npm install
-
-# Start development server
 npm run dev
 ```
 
-### Build
+See [web-app/README.md](web-app/README.md) for more details.
 
-```bash
-# Build for production
-npm run build
+### macOS App
 
-# Preview production build
-npm run preview
-```
+🍎 **Requirements**: macOS 13.0 (Ventura) or later
+
+#### Development
+
+1. Open `macos-app/TimeLime.xcodeproj` in Xcode
+2. Build and run (⌘R)
+
+The app runs in the menu bar - click the calendar icon to open the dropdown.
+
+See [macos-app/README.md](macos-app/README.md) for more details.
 
 ## 🛠️ Tech Stack
 
+### Web App
 - **Framework**: Svelte 4
 - **Build Tool**: Vite 5
 - **Styling**: Custom CSS with CSS variables
 - **Storage**: Browser Cookies
 - **Hosting**: GitHub Pages
 - **CI/CD**: GitHub Actions
+
+### macOS App
+- **Framework**: SwiftUI
+- **Language**: Swift 5
+- **Architecture**: MVVM
+- **Storage**: Local file system
+- **Deployment Target**: macOS 13.0+
 
 ## 📝 Usage
 
