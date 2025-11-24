@@ -109,14 +109,10 @@
 
   .calendar-header h2 {
     font-size: 1.85rem;
-    font-family: 'Bangers', cursive;
-    color: var(--comic-red);
-    font-weight: 400;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-shadow:
-      2px 2px 0 var(--comic-black),
-      -1px -1px 0 var(--comic-white);
+    font-family: 'Merriweather', serif;
+    color: var(--forest-green);
+    font-weight: 700;
+    letter-spacing: 0.5px;
   }
 
   .calendar-grid {
@@ -128,40 +124,41 @@
 
   .day-header {
     text-align: center;
-    font-weight: 400;
-    font-size: 0.9rem;
+    font-weight: 600;
+    font-size: 0.85rem;
     padding: 0.75rem;
-    color: var(--comic-black);
-    font-family: 'Bebas Neue', sans-serif;
-    letter-spacing: 1.5px;
+    color: var(--forest-green);
+    font-family: 'Nunito', sans-serif;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
-    background: var(--comic-yellow);
-    border-radius: 0;
-    border: 2px solid var(--comic-black);
+    background: var(--moss-green-light);
+    border-radius: 10px;
+    border: 2px solid var(--sage-green);
   }
 
   .calendar-day {
     aspect-ratio: 1 / 1;
-    background: var(--comic-white);
-    border: var(--border-thin) solid var(--comic-black);
-    border-radius: 0;
+    background: var(--cream-light);
+    border: 2px solid var(--sage-green);
+    border-radius: 12px;
     padding: 0.625rem;
     position: relative;
-    box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
-    transition: all 0.2s ease;
+    box-shadow: var(--shadow-card);
+    transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
     overflow: hidden;
   }
 
   .calendar-day:hover {
-    transform: translate(-1px, -1px);
-    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+    border-color: var(--moss-green);
   }
 
   .calendar-day.empty {
     background: transparent;
-    border: none;
+    border: 2px solid transparent;
     box-shadow: none;
   }
 
@@ -170,16 +167,16 @@
   }
 
   .calendar-day.today {
-    border: var(--border-medium) solid var(--comic-red);
-    box-shadow: 3px 3px 0px var(--comic-yellow);
+    border: 3px solid var(--terracotta);
+    box-shadow: 0 0 0 3px var(--terracotta-light);
   }
 
   .day-number {
-    font-weight: 400;
+    font-weight: 700;
     font-size: 1.1rem;
     margin-bottom: 0.375rem;
-    font-family: 'Bebas Neue', sans-serif;
-    color: var(--comic-black);
+    font-family: 'Merriweather', serif;
+    color: var(--forest-green);
   }
 
   .day-events {
@@ -194,25 +191,24 @@
   .event-indicator {
     font-size: 0.7rem;
     padding: 0.375rem 0.625rem;
-    border-radius: 0;
+    border-radius: 8px;
     text-align: left;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     cursor: pointer;
-    border: 2px solid var(--comic-black);
+    border: 2px solid rgba(0, 0, 0, 0.1);
     color: white;
-    font-weight: 400;
-    font-family: 'Bebas Neue', sans-serif;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: all 0.2s ease;
-    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+    font-weight: 600;
+    font-family: 'Nunito', sans-serif;
+    letter-spacing: 0.3px;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-card);
   }
 
   .event-indicator:hover {
-    transform: translate(-1px, -1px);
-    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.7);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
   }
 
   @media (max-width: 768px) {

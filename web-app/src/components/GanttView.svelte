@@ -78,12 +78,12 @@
 
 <style>
   .gantt-container {
-    background: var(--comic-white);
-    border-radius: 0;
+    background: var(--cream-light);
+    border-radius: 20px;
     padding: 1.75rem;
     overflow-x: auto;
-    border: var(--border-thick) solid var(--comic-black);
-    box-shadow: var(--shadow-comic-lg);
+    border: 2px solid var(--sage-green);
+    box-shadow: var(--shadow-lifted);
     position: relative;
   }
 
@@ -95,34 +95,29 @@
     right: 0;
     bottom: 0;
     background-image:
-      radial-gradient(circle, rgba(0, 102, 204, 0.03) 1px, transparent 1px);
+      radial-gradient(circle, rgba(122, 158, 126, 0.03) 1px, transparent 1px);
     background-size: 12px 12px;
     pointer-events: none;
+    border-radius: 20px;
   }
 
   .gantt-header {
     position: relative;
     height: 50px;
     margin-bottom: 1.5rem;
-    border-bottom: var(--border-thick) solid var(--comic-black);
+    border-bottom: 2px solid var(--sage-green);
     z-index: 1;
   }
 
   .gantt-header::after {
     content: '';
     position: absolute;
-    bottom: -4px;
+    bottom: -2px;
     left: 0;
     right: 0;
-    height: 4px;
-    background:
-      repeating-linear-gradient(
-        90deg,
-        var(--comic-red) 0px,
-        var(--comic-red) 20px,
-        var(--comic-yellow) 20px,
-        var(--comic-yellow) 40px
-      );
+    height: 3px;
+    background: linear-gradient(90deg, var(--moss-green) 0%, var(--leaf-green) 50%, var(--moss-green) 100%);
+    opacity: 0.5;
   }
 
   .gantt-timeline {
@@ -138,10 +133,10 @@
 
   .month-label {
     font-size: 0.9rem;
-    color: var(--comic-black);
-    font-weight: 400;
-    font-family: 'Bebas Neue', sans-serif;
-    letter-spacing: 1.5px;
+    color: var(--forest-green);
+    font-weight: 600;
+    font-family: 'Nunito', sans-serif;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
   }
 
@@ -161,40 +156,40 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: 'Crimson Pro', serif;
+    font-family: 'Merriweather', serif;
+    color: var(--forest-green);
   }
 
   .event-timeline {
     position: relative;
     height: 48px;
-    background: var(--comic-gray-light);
-    border-radius: 0;
-    border: 2px solid var(--comic-gray);
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: var(--cream);
+    border-radius: 12px;
+    border: 2px solid var(--sage-green);
+    box-shadow: inset 0 1px 3px rgba(45, 62, 47, 0.08);
   }
 
   .event-bar {
     position: absolute;
     height: 100%;
-    border-radius: 0;
+    border-radius: 10px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     padding: 0 0.875rem;
-    border: var(--border-medium) solid var(--comic-black);
+    border: 2px solid rgba(0, 0, 0, 0.1);
     color: white;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 0.85rem;
-    font-family: 'Bebas Neue', sans-serif;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.6);
+    font-family: 'Nunito', sans-serif;
+    letter-spacing: 0.3px;
+    box-shadow: var(--shadow-card);
   }
 
   .event-bar:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.8);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
     z-index: 10;
   }
 
@@ -209,16 +204,16 @@
     text-align: center;
     padding: 4rem 2rem;
     color: var(--text-secondary);
-    font-family: 'Comic Neue', sans-serif;
+    font-family: 'Nunito', sans-serif;
   }
 
   .empty-state p:first-child {
     font-size: 1.5rem;
     font-weight: 700;
-    font-family: 'Bebas Neue', sans-serif;
-    color: var(--comic-red);
+    font-family: 'Merriweather', serif;
+    color: var(--forest-green);
     margin-bottom: 0.5rem;
-    letter-spacing: 2px;
+    letter-spacing: 0.5px;
   }
 
   .empty-hint {

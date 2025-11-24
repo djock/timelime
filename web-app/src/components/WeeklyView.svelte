@@ -97,22 +97,18 @@
 
   .week-header h2 {
     font-size: 1.75rem;
-    font-family: 'Bangers', cursive;
-    color: var(--comic-blue);
-    font-weight: 400;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-shadow:
-      2px 2px 0 var(--comic-black),
-      -1px -1px 0 var(--comic-white);
+    font-family: 'Merriweather', serif;
+    color: var(--forest-green);
+    font-weight: 700;
+    letter-spacing: 0.5px;
   }
 
   .week-range {
     font-size: 1rem;
     color: var(--text-secondary);
     margin-top: 0.5rem;
-    font-family: 'Comic Neue', sans-serif;
-    font-weight: 700;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
   }
 
   .week-grid {
@@ -124,48 +120,49 @@
   }
 
   .week-day {
-    background: var(--comic-white);
-    border: var(--border-medium) solid var(--comic-black);
-    border-radius: 0;
+    background: var(--cream-light);
+    border: 2px solid var(--sage-green);
+    border-radius: 16px;
     display: flex;
     flex-direction: column;
-    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.4);
-    transition: all 0.2s ease;
+    box-shadow: var(--shadow-card);
+    transition: all 0.3s ease;
+    overflow: hidden;
   }
 
   .week-day:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.6);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+    border-color: var(--moss-green);
   }
 
   .week-day.today {
-    border: var(--border-thick) solid var(--comic-red);
-    box-shadow: 4px 4px 0px var(--comic-yellow);
+    border: 3px solid var(--terracotta);
+    box-shadow: 0 0 0 3px var(--terracotta-light);
   }
 
   .day-header {
     padding: 1.25rem;
     text-align: center;
-    border-bottom: var(--border-medium) solid var(--comic-black);
-    background: var(--comic-yellow);
+    border-bottom: 2px solid var(--sage-green);
+    background: var(--moss-green-light);
   }
 
   .day-name {
-    font-weight: 400;
+    font-weight: 600;
     font-size: 0.9rem;
-    color: var(--comic-black);
-    font-family: 'Bebas Neue', sans-serif;
-    letter-spacing: 1.5px;
+    color: var(--forest-green);
+    font-family: 'Nunito', sans-serif;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
   }
 
   .day-date {
-    font-size: 1.75rem;
-    font-weight: 400;
+    font-size: 1.6rem;
+    font-weight: 700;
     margin-top: 0.375rem;
-    font-family: 'Bangers', cursive;
-    color: var(--comic-red);
-    text-shadow: 2px 2px 0px var(--comic-black);
+    font-family: 'Merriweather', serif;
+    color: var(--forest-green);
   }
 
   .day-events {
@@ -178,27 +175,28 @@
   }
 
   .event-card {
-    background: var(--comic-gray-light);
-    border-radius: 0;
+    background: var(--cream);
+    border-radius: 10px;
     padding: 0.875rem;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
     text-align: left;
-    border: var(--border-thin) solid var(--comic-black);
+    border: 2px solid var(--sage-green);
     color: var(--text-primary);
-    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--shadow-card);
   }
 
   .event-card:hover {
-    transform: translate(-1px, -1px);
-    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.5);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+    border-color: var(--moss-green);
   }
 
   .event-title {
-    font-weight: 700;
+    font-weight: 600;
     font-size: 0.95rem;
     margin-bottom: 0.375rem;
-    font-family: 'Comic Neue', sans-serif;
+    font-family: 'Nunito', sans-serif;
     color: var(--text-primary);
     white-space: nowrap;
     overflow: hidden;
@@ -206,9 +204,9 @@
   }
 
   .event-time {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     color: var(--text-secondary);
-    font-family: 'Comic Neue', sans-serif;
+    font-family: 'Nunito', sans-serif;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

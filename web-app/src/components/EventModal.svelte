@@ -160,15 +160,15 @@
   .selected-range {
     margin-top: 0.75rem;
     padding: 0.75rem;
-    background: var(--comic-blue);
-    color: var(--comic-white);
-    border: var(--border-medium) solid var(--comic-black);
-    border-radius: 0;
-    font-family: 'Comic Neue', sans-serif;
-    font-weight: 700;
+    background: var(--moss-green-light);
+    color: var(--forest-green);
+    border: 2px solid var(--moss-green);
+    border-radius: 12px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
     font-size: 0.95rem;
     text-align: center;
-    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.4);
+    box-shadow: var(--shadow-card);
   }
 
   .days-selector {
@@ -179,33 +179,33 @@
 
   .day-button {
     padding: 0.625rem 1rem;
-    border: var(--border-medium) solid var(--comic-black);
-    background: var(--comic-white);
-    color: var(--comic-black);
-    border-radius: 0;
+    border: 2px solid var(--sage-green);
+    background: var(--cream-light);
+    color: var(--text-primary);
+    border-radius: 12px;
     font-size: 0.8rem;
-    font-weight: 400;
-    font-family: 'Bebas Neue', sans-serif;
-    letter-spacing: 1px;
+    font-weight: 600;
+    font-family: 'Nunito', sans-serif;
+    letter-spacing: 0.3px;
     text-transform: uppercase;
     cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-card);
   }
 
   .day-button:hover {
-    border-color: var(--comic-black);
-    background: var(--comic-yellow);
-    color: var(--comic-black);
-    transform: translate(-1px, -1px);
-    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.5);
+    border-color: var(--moss-green);
+    background: var(--sage-green);
+    color: var(--forest-green);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
   }
 
   .day-button.selected {
-    background: var(--comic-red);
-    color: var(--comic-white);
-    border-color: var(--comic-black);
-    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.6);
+    background: var(--moss-green);
+    color: var(--text-light);
+    border-color: var(--moss-green-dark);
+    box-shadow: var(--shadow-soft);
   }
 
   .color-picker {
@@ -217,18 +217,18 @@
   .color-preview {
     width: 50px;
     height: 50px;
-    border-radius: 0;
-    border: var(--border-medium) solid var(--comic-black);
+    border-radius: 12px;
+    border: 2px solid var(--sage-green);
     cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-card);
     position: relative;
   }
 
   .color-preview:hover {
-    transform: translate(-2px, -2px) rotate(-5deg);
-    border-color: var(--comic-black);
-    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.6);
+    transform: translateY(-2px) scale(1.05);
+    border-color: var(--moss-green);
+    box-shadow: var(--shadow-soft);
   }
 
   .color-picker input[type="color"] {
@@ -239,21 +239,9 @@
   }
 
   .color-text {
-    font-family: 'Crimson Pro', monospace;
+    font-family: 'Nunito', sans-serif;
     font-size: 0.95rem;
     color: var(--text-secondary);
     font-weight: 600;
-  }
-
-  .color-preview {
-    position: relative;
-  }
-
-  .color-preview::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    cursor: pointer;
   }
 </style>

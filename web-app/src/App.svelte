@@ -254,29 +254,13 @@
 
   header {
     margin-bottom: 2rem;
-    background: var(--comic-white);
+    background: var(--cream-light);
     padding: 2rem;
-    border-radius: 0;
-    border: var(--border-thick) solid var(--comic-black);
-    box-shadow: var(--shadow-comic-lg);
+    border-radius: 20px;
+    box-shadow: var(--shadow-lifted);
     position: relative;
     animation: fadeInUp 0.6s ease-out 0.1s backwards;
-  }
-
-  header::before {
-    content: 'POW!';
-    position: absolute;
-    top: -18px;
-    left: 50%;
-    transform: translateX(-50%) rotate(-5deg);
-    font-size: 1.5rem;
-    font-family: 'Bangers', cursive;
-    color: var(--comic-red);
-    background: var(--comic-yellow);
-    padding: 0.25rem 1rem;
-    border: var(--border-medium) solid var(--comic-black);
-    box-shadow: var(--shadow-comic);
-    letter-spacing: 2px;
+    border: 2px solid var(--sage-green);
   }
 
   .header-content {
@@ -297,29 +281,25 @@
   .logo-img {
     width: 48px;
     height: 48px;
-    filter: drop-shadow(3px 3px 0px var(--comic-black));
+    filter: drop-shadow(0 2px 4px rgba(45, 62, 47, 0.2));
   }
 
   h1 {
-    font-family: 'Bangers', cursive;
-    font-size: 2.5rem;
-    color: var(--comic-red);
+    font-family: 'Merriweather', serif;
+    font-size: 2.2rem;
+    color: var(--forest-green);
     margin: 0;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    text-shadow:
-      3px 3px 0 var(--comic-black),
-      -1px -1px 0 var(--comic-white);
-    font-weight: 400;
+    letter-spacing: 0.5px;
+    font-weight: 700;
   }
 
   .app-description {
-    font-family: 'Comic Neue', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-size: 0.95rem;
     color: var(--text-secondary);
     margin: 0.5rem 0 0 0;
-    font-weight: 600;
-    letter-spacing: 0.5px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
   }
 
   .header-actions {
@@ -332,32 +312,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: var(--comic-gray-light);
+    background: var(--cream);
     padding: 1.25rem 1.5rem;
-    border-radius: 0;
+    border-radius: 20px;
     flex-wrap: wrap;
     gap: 1.5rem;
-    border: var(--border-medium) solid var(--comic-black);
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-card);
     position: relative;
-  }
-
-  .view-nav::before,
-  .view-nav::after {
-    content: '★';
-    position: absolute;
-    color: var(--comic-red);
-    font-size: 1.2rem;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  .view-nav::before {
-    left: 8px;
-  }
-
-  .view-nav::after {
-    right: 8px;
+    border: 2px solid var(--sage-green);
   }
 
   .view-buttons {
@@ -368,23 +330,21 @@
   }
 
   .view-buttons button {
-    background: var(--comic-white);
-    color: var(--comic-black);
-    border-color: var(--comic-black);
+    background: var(--cream-light);
+    color: var(--text-primary);
     min-width: 100px;
-    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.6);
+    border: 2px solid var(--sage-green);
   }
 
   .view-buttons button:hover {
-    background: var(--comic-blue);
-    color: var(--comic-white);
+    background: var(--sage-green);
+    color: var(--forest-green);
   }
 
   .view-buttons button.active {
-    background: var(--comic-purple);
-    color: var(--comic-white);
-    border-color: var(--comic-black);
-    box-shadow: var(--shadow-comic);
+    background: var(--moss-green);
+    color: var(--text-light);
+    border-color: var(--moss-green-dark);
   }
 
   .time-navigation {
@@ -399,32 +359,31 @@
   }
 
   .primary-action {
-    background: var(--comic-purple) !important;
-    color: var(--comic-white) !important;
+    background: var(--terracotta) !important;
+    color: var(--text-light) !important;
   }
 
   .primary-action:hover {
-    background: #AB47BC !important;
+    background: var(--terracotta-dark) !important;
   }
 
   .nav-arrow {
-    background: var(--comic-purple) !important;
-    color: var(--comic-white) !important;
+    background: var(--slate-blue) !important;
+    color: var(--text-light) !important;
   }
 
   .nav-arrow:hover {
-    background: #AB47BC !important;
+    background: var(--slate-blue-dark) !important;
   }
 
   .time-label {
     min-width: 240px;
     text-align: center;
-    font-weight: 400;
-    font-size: 1.2rem;
-    font-family: 'Bebas Neue', sans-serif;
-    color: var(--comic-black);
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1.1rem;
+    font-family: 'Merriweather', serif;
+    color: var(--forest-green);
+    letter-spacing: 0.5px;
   }
 
   .content {
@@ -453,11 +412,6 @@
     .view-nav {
       flex-direction: column;
       padding: 1rem;
-    }
-
-    .view-nav::before,
-    .view-nav::after {
-      display: none;
     }
 
     .view-buttons {

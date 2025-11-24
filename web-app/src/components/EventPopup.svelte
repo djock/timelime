@@ -167,8 +167,8 @@
     font-size: 1rem;
     color: var(--text-secondary);
     margin-top: 0.5rem;
-    font-family: 'Comic Neue', sans-serif;
-    font-weight: 700;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
   }
 
   .stats {
@@ -177,10 +177,10 @@
     gap: 1.25rem;
     margin-bottom: 2rem;
     padding: 1.5rem;
-    background: var(--comic-gray-light);
-    border-radius: 0;
-    border: var(--border-medium) solid var(--comic-black);
-    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
+    background: var(--cream);
+    border-radius: 16px;
+    border: 2px solid var(--sage-green);
+    box-shadow: var(--shadow-card);
   }
 
   .stat {
@@ -188,33 +188,22 @@
     position: relative;
   }
 
-  .stat::after {
-    content: '★';
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: var(--comic-red);
-    font-size: 0.9rem;
-  }
-
   .stat-value {
     font-size: 2rem;
-    font-weight: 400;
-    font-family: 'Bangers', cursive;
-    color: var(--comic-black);
+    font-weight: 700;
+    font-family: 'Merriweather', serif;
+    color: var(--forest-green);
     margin-top: 0.5rem;
-    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
   }
 
   .stat-label {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     color: var(--text-secondary);
     margin-top: 0.5rem;
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Nunito', sans-serif;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 400;
+    letter-spacing: 0.5px;
+    font-weight: 600;
   }
 
   .check-in-section {
@@ -225,39 +214,33 @@
     width: 100%;
     padding: 1.25rem;
     font-size: 1.1rem;
-    font-weight: 400;
-    font-family: 'Bebas Neue', sans-serif;
-    letter-spacing: 2px;
-    background: var(--comic-green);
-    border: var(--border-thick) solid var(--comic-black);
-    box-shadow: var(--shadow-comic);
-    animation: pulse 2s infinite;
+    font-weight: 600;
+    font-family: 'Nunito', sans-serif;
+    letter-spacing: 0.5px;
+    background: var(--leaf-green);
+    border: 2px solid var(--moss-green-dark);
+    box-shadow: var(--shadow-soft);
   }
 
   .check-in-button:hover {
-    background: #66BB6A;
-    transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.8);
+    background: var(--moss-green);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lifted);
   }
 
   .contribution-section h3 {
     margin-bottom: 1.5rem;
     font-size: 1.25rem;
-    font-family: 'Bangers', cursive;
-    color: var(--comic-blue);
-    font-weight: 400;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    font-family: 'Merriweather', serif;
+    color: var(--forest-green);
+    font-weight: 600;
+    letter-spacing: 0.5px;
     text-align: center;
-    text-shadow:
-      2px 2px 0 var(--comic-black),
-      -1px -1px 0 var(--comic-white);
   }
 
   .contribution-cell.current {
-    border: var(--border-medium) solid var(--comic-yellow);
-    box-shadow: 3px 3px 0px var(--comic-yellow);
-    animation: pulse 2s infinite;
+    border: 3px solid var(--terracotta);
+    box-shadow: 0 0 0 3px var(--terracotta-light);
   }
 
   .legend {
@@ -266,8 +249,8 @@
     gap: 2rem;
     margin-top: 1.5rem;
     font-size: 0.85rem;
-    font-family: 'Comic Neue', sans-serif;
-    font-weight: 700;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
   }
 
   .legend-item {
